@@ -13,6 +13,10 @@
 		85565F91297E9F4A009E7E7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85565F8F297E9F4A009E7E7E /* Main.storyboard */; };
 		85565F93297E9F4A009E7E7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85565F92297E9F4A009E7E7E /* Assets.xcassets */; };
 		85565F96297E9F4A009E7E7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85565F94297E9F4A009E7E7E /* LaunchScreen.storyboard */; };
+		85864BAE298131E5005FD3D9 /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85864BAD298131E5005FD3D9 /* GroupManager.swift */; };
+		85864BB0298135D2005FD3D9 /* ScheduleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85864BAF298135D2005FD3D9 /* ScheduleData.swift */; };
+		85864BB229814C68005FD3D9 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85864BB129814C68005FD3D9 /* ScheduleManager.swift */; };
+		85957C912981620200C6FC7C /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85957C902981620200C6FC7C /* ScheduleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		85565F92297E9F4A009E7E7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85565F95297E9F4A009E7E7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85565F97297E9F4A009E7E7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		85864BAD298131E5005FD3D9 /* GroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
+		85864BAF298135D2005FD3D9 /* ScheduleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleData.swift; sourceTree = "<group>"; };
+		85864BB129814C68005FD3D9 /* ScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleManager.swift; sourceTree = "<group>"; };
+		85957C902981620200C6FC7C /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +66,33 @@
 			children = (
 				85565F89297E9F4A009E7E7E /* AppDelegate.swift */,
 				85565F8B297E9F4A009E7E7E /* SceneDelegate.swift */,
-				85565F8D297E9F4A009E7E7E /* ViewController.swift */,
-				85565F8F297E9F4A009E7E7E /* Main.storyboard */,
+				85864BAB29812ED4005FD3D9 /* Model */,
 				85565F92297E9F4A009E7E7E /* Assets.xcassets */,
+				85957C8F298161E200C6FC7C /* Controllers */,
+				85565F8F297E9F4A009E7E7E /* Main.storyboard */,
 				85565F94297E9F4A009E7E7E /* LaunchScreen.storyboard */,
 				85565F97297E9F4A009E7E7E /* Info.plist */,
 			);
 			path = "KPI Schedule";
+			sourceTree = "<group>";
+		};
+		85864BAB29812ED4005FD3D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85864BAD298131E5005FD3D9 /* GroupManager.swift */,
+				85864BAF298135D2005FD3D9 /* ScheduleData.swift */,
+				85864BB129814C68005FD3D9 /* ScheduleManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		85957C8F298161E200C6FC7C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				85565F8D297E9F4A009E7E7E /* ViewController.swift */,
+				85957C902981620200C6FC7C /* ScheduleViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +166,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85864BAE298131E5005FD3D9 /* GroupManager.swift in Sources */,
 				85565F8E297E9F4A009E7E7E /* ViewController.swift in Sources */,
+				85864BB229814C68005FD3D9 /* ScheduleManager.swift in Sources */,
+				85864BB0298135D2005FD3D9 /* ScheduleData.swift in Sources */,
 				85565F8A297E9F4A009E7E7E /* AppDelegate.swift in Sources */,
+				85957C912981620200C6FC7C /* ScheduleViewController.swift in Sources */,
 				85565F8C297E9F4A009E7E7E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +326,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,6 +357,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
