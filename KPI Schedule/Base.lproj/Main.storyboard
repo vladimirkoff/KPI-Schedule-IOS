@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="iPN-wM-bOb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -16,11 +16,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="KPI_Schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="749"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uPU-mS-5G2">
-                                <rect key="frame" x="304" y="5" width="51" height="31"/>
+                                <rect key="frame" x="304" y="64" width="51" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="49" id="UK1-t1-ZW8"/>
                                     <constraint firstAttribute="height" constant="31" id="nbZ-RC-O9C"/>
@@ -95,12 +95,11 @@
                             <constraint firstItem="uPU-mS-5G2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="xSY-sK-Sxk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="s7x-W2-cJ6"/>
                     <connections>
                         <outlet property="backgroundView" destination="8bC-Xf-vdC" id="8dn-w2-oXE"/>
                         <outlet property="seacrhTextField" destination="tDO-Z8-gvD" id="lu1-Ru-QNp"/>
                         <outlet property="switcher" destination="uPU-mS-5G2" id="zpu-tc-l2F"/>
-                        <segue destination="PME-tL-qbq" kind="showDetail" identifier="goToSchedule" id="qCH-hS-PZU"/>
+                        <segue destination="PME-tL-qbq" kind="presentation" identifier="goToSchedule" modalPresentationStyle="fullScreen" id="qCH-hS-PZU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -112,23 +111,43 @@
             <objects>
                 <viewController id="PME-tL-qbq" customClass="ScheduleViewController" customModule="KPI_Schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ac2-RO-Kaa">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klJ-AR-5bt">
-                                <rect key="frame" x="125" y="336" width="142" height="73"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IB-53-HZV">
+                                <rect key="frame" x="0.0" y="16" width="106" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="61"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Back" buttonSize="large">
+                                    <imageReference key="image" image="arrow.uturn.backward.square.fill" catalog="system" symbolScale="large" variableValue="0.0"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                    <color key="baseForegroundColor" systemColor="systemBlueColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="backButton:" destination="PME-tL-qbq" eventType="touchUpInside" id="I4J-9s-mRL"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="x13-GA-mQW">
+                                <rect key="frame" x="0.0" y="112" width="393" height="740"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ReuseCellIdentifier" id="zGU-L7-hny">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zGU-L7-hny" id="rEV-JE-g6S">
+                                            <rect key="frame" x="0.0" y="0.0" width="349" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0Gp-Wc-ey7">
-                                <rect key="frame" x="45" y="84" width="303" height="32"/>
+                                <rect key="frame" x="45" y="73" width="303" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="Today"/>
-                                    <segment title="Week"/>
-                                    <segment title="Full"/>
+                                    <segment title="First Week"/>
+                                    <segment title="Second Week"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentSelected:" destination="PME-tL-qbq" eventType="valueChanged" id="5ZI-O7-QRp"/>
@@ -137,40 +156,20 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YKL-bP-au1"/>
                         <color key="backgroundColor" name="Color"/>
+                        <color key="tintColor" systemColor="systemPinkColor"/>
                     </view>
-                    <navigationItem key="navigationItem" style="browser" id="kjr-0S-fGo"/>
                     <connections>
                         <outlet property="segmentBar" destination="0Gp-Wc-ey7" id="0xY-cP-50m"/>
-                        <outlet property="test" destination="klJ-AR-5bt" id="21f-dw-6ws"/>
+                        <outlet property="tableView" destination="x13-GA-mQW" id="SUS-Hz-11t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2NR-2R-c5n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2136.6412213740459" y="140.84507042253523"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="bYw-Jb-ISH">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iPN-wM-bOb" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Eeb-CU-Duz">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="1" green="0.90196078430000004" blue="0.65490196079999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <imageReference key="backIndicatorImage" image="arrowshape.turn.up.backward.fill" catalog="system" variableValue="0.0"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="qWb-iV-ciF"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0ak-Al-5hH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="296.94656488549617" y="140.84507042253523"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="104"/>
+        <image name="arrow.uturn.backward.square.fill" catalog="system" width="128" height="114"/>
         <image name="group-removebg-preview" width="85.333335876464844" height="85.333335876464844"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="123"/>
         <image name="Радіо_КПІ._Лого (1)" width="150.33332824707031" height="184.66667175292969"/>
@@ -180,8 +179,17 @@
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemFillColor">
             <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

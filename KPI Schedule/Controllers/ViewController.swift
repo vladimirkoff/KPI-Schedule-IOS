@@ -17,11 +17,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var seacrhTextField: UITextField!
     
     
-    
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -33,7 +28,10 @@ class ViewController: UIViewController {
     
     @IBAction func searchButtonPressed(_ sender: UIButton) {
         if let group = seacrhTextField.text {
-            test.performRequest(for: group)
+            DispatchQueue.main.async {
+                self.test.performRequest(for: group)
+            }
+            
         }
         self.performSegue(withIdentifier: "goToSchedule", sender: self)
     }

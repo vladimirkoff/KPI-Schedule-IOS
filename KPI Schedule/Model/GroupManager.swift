@@ -9,17 +9,9 @@ import Foundation
 
 var schedule = ScheduleManager()
 
-
 struct GroupManager {
     let urlForId = "https://schedule.kpi.ua/api/schedule/groups"
 
-
-    func getScheduleForWeek(id: String) {
-        
-    }
-    
-
-    
     func performRequest(for group: String) {
         if let url = URL(string: urlForId) {
             let session = URLSession(configuration: .default)
@@ -43,10 +35,10 @@ struct GroupManager {
         let decoder = JSONDecoder()
 
         do {
-            let decodedData = try decoder.decode(ScheduleData.self, from: data)
-            for el in decodedData.data {
-                if el.name == group {
-                    return el.id
+            let decodedData = try decoder.decode(GroupData.self, from: data)
+            for name in decodedData.data {
+                if name.name == group {
+                    return name.id
                 }
             }
         } catch {

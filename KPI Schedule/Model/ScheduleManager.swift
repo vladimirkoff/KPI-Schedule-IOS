@@ -7,8 +7,14 @@
 
 import Foundation
 
+let currentTimeAnddate = CurrentTimeAndDate()
+let currentLessonAndWeek = CurrentLessonAndWeek()
+
+var pairs = Pairs()
+
 struct ScheduleManager {
     var urlForSchedule = "https://schedule.kpi.ua/api/schedule/lessons?groupId="
+    
     
     mutating func performRequest(for id: String) {
         urlForSchedule += id
@@ -23,23 +29,20 @@ struct ScheduleManager {
                         let decoder = JSONDecoder()
                         
                         do {
-                            let decodedData = try decoder.decode(ScheduleData2.self, from: safeData)
+                            let decodedData = try decoder.decode(ScheduleData.self, from: safeData)
                             let days = decodedData.data.scheduleFirstWeek
-                            
                             for day in days {
-                                print (day.day)
                                 for pair in day.pairs {
                                     print(pair.name)
                                     print(pair.teacherName)
                                     print(pair.time)
-                                    print(pair.type)
+                                    pairs.pairs.append(pair.type)
                                     print("--------")
                                 }
+                                print(pairs.pairs)
                             }
-//                            print(decodedData.data.scheduleFirstWeek[0].pairs[0].name)
-//                            print(decodedData.data.scheduleFirstWeek[0].pairs[0].time)
-//                            print(decodedData.data.scheduleFirstWeek[0].pairs[0].type)
-//                            print(decodedData.data.scheduleFirstWeek[0].pairs[0].teacherName)
+                            currentTimeAnddate.performRequest()
+                            currentLessonAndWeek.performRequest()
                         } catch {
                             print("Error 2")
                         }
