@@ -1,48 +1,43 @@
-//
-//  ScheduleManager.swift
-//  KPI Schedule
-//
-//  Created by Vladimir Kovalev on 25.01.2023.
-//
 
 import Foundation
 
-var schedule = ScheduleManager()
+
+
+var scheduleManager = ScheduleManager()
 
 struct GroupManager {
-    let urlForId = "https://schedule.kpi.ua/api/schedule/groups"
-
-    func performRequest(for group: String) {
-        if let url = URL(string: urlForId) {
+    let url = "https://schedule.kpi.ua/api/schedule/groups"
+    
+    
+    func performRequest(group: String) {
+        if let url = URL(string: url) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
                 if let e = error {
                     print(e)
-                } else {
-                    if let safeData = data {
-                        if let id = parseJSON(data: safeData, group: group) {
-                            print(id)
-                            schedule.performRequest(for: id)
-                        }
+                }
+                if let safeData = data {
+                    if let grouppa = self.parseJSON(data: safeData, group: group) {
+//                        self.delegate?.didUpdate(group: grouppa)
+                          scheduleManager.performRequest(id: grouppa.id)
                     }
                 }
             }
             task.resume()
         }
     }
-    
-    func parseJSON(data: Data, group: String) -> String? {
+    func parseJSON(data: Data, group: String) -> GroupModel? {
         let decoder = JSONDecoder()
-
+        
         do {
             let decodedData = try decoder.decode(GroupData.self, from: data)
-            for name in decodedData.data {
-                if name.name == group {
-                    return name.id
+            for groupa in decodedData.data {
+                if groupa.name == group {
+                    return GroupModel(name: groupa.name, faculty: groupa.faculty, id: groupa.id)
                 }
             }
         } catch {
-            print("Error 1")
+            print("Error")
         }
         return nil
     }

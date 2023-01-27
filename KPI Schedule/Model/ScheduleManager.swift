@@ -2,68 +2,57 @@
 //  ScheduleManager.swift
 //  KPI Schedule
 //
-//  Created by Vladimir Kovalev on 25.01.2023.
+//  Created by Vladimir Kovalev on 27.01.2023.
 //
 
 import Foundation
 
-let currentTimeAnddate = CurrentTimeAndDate()
-let currentLessonAndWeek = CurrentLessonAndWeek()
+protocol ScheduleManagerDelegate {
+    func didUpdate(schedule: ScheduleModel)
+    func didFail(error: Error)
+}
 
-var pairs = Pairs()
+var test = GroupManager()
 
 struct ScheduleManager {
-    var urlForSchedule = "https://schedule.kpi.ua/api/schedule/lessons?groupId="
+    var url = "https://schedule.kpi.ua/api/schedule/lessons?groupId="
     
+    var delegate: ScheduleManagerDelegate?
     
-    mutating func performRequest(for id: String) {
-        urlForSchedule += id
+    mutating func performRequest(id: String) {
+        url += id
         
-        if let url = URL(string: urlForSchedule) {
+        if let url = URL(string: url) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
                 if let e = error {
                     print(e)
-                } else {
-                    if let safeData = data {
-                        let decoder = JSONDecoder()
-                        
-                        do {
-                            let decodedData = try decoder.decode(ScheduleData.self, from: safeData)
-                            let days = decodedData.data.scheduleFirstWeek
-                            for day in days {
-                                for pair in day.pairs {
-                                    print(pair.name)
-                                    print(pair.teacherName)
-                                    print(pair.time)
-                                    pairs.pairs.append(pair.type)
-                                    print("--------")
-                                }
-                                print(pairs.pairs)
-                            }
-                            currentTimeAnddate.performRequest()
-                            currentLessonAndWeek.performRequest()
-                        } catch {
-                            print("Error 2")
-                        }
+                }
+                if let safeData = data {
+                    if let schedule = self.parse2JSON(data: safeData) {
+                        self.delegate?.didUpdate(schedule: schedule)
                     }
                 }
             }
-            urlForSchedule = "https://schedule.kpi.ua/api/schedule/lessons?groupId="
             task.resume()
         }
     }
     
-//    func parseJSON(data: Data, id: String) -> String? {
-//        let decoder = JSONDecoder()
-//
-//        do {
-//            let decodedData = try decoder.decode(ScheduleData2.self, from: data)
-//            let day = decodedData.data.scheduleFirstWeek[0].day
-//            return day
-//        } catch {
-//            print("Error")
-//            return nil
-//        }
-//    }
+    func parse2JSON(data: Data) -> ScheduleModel? {
+        let decoder = JSONDecoder()
+        
+        do {
+            let decodedData = try decoder.decode(ScheduleData.self, from: data)
+            let name = decodedData.data.scheduleFirstWeek[0].pairs[0].name
+            let teacherName = decodedData.data.scheduleFirstWeek[0].pairs[0].teacherName
+            let time = decodedData.data.scheduleFirstWeek[0].pairs[0].time
+            let day = decodedData.data.scheduleFirstWeek[0].day
+            let type = decodedData.data.scheduleFirstWeek[0].pairs[0].type
+            
+            return ScheduleModel(name: name, type: type, time: time, day: day, teacherName: teacherName)
+        } catch {
+            print("Error 2")
+        }
+        return nil
+    }
 }
