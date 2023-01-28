@@ -1,25 +1,22 @@
 
 import Foundation
 
-
-
-var scheduleManager = ScheduleManager()
+private var scheduleManager = ScheduleManager()
 
 struct GroupManager {
-    let url = "https://schedule.kpi.ua/api/schedule/groups"
     
+    var delegate: ScheduleManagerDelegate?
     
     func performRequest(group: String) {
-        if let url = URL(string: url) {
+        if let url = URL(string: UrlsAndStrings.urlForId) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
                 if let e = error {
-                    print(e)
+                    self.delegate?.didFail(error: e)
                 }
                 if let safeData = data {
                     if let grouppa = self.parseJSON(data: safeData, group: group) {
-//                        self.delegate?.didUpdate(group: grouppa)
-                          scheduleManager.performRequest(id: grouppa.id)
+                          scheduleManager.performRequest(id: grouppa.id, delegate: delegate)
                     }
                 }
             }
@@ -37,7 +34,7 @@ struct GroupManager {
                 }
             }
         } catch {
-            print("Error")
+            self.delegate?.didFail(error: error)
         }
         return nil
     }

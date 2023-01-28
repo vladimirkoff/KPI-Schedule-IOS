@@ -17,8 +17,6 @@ struct ScheduleData: Codable {
 
 
 
-
-
 struct Schedule: Codable {
     var scheduleFirstWeek: [Day]
     var scheduleSecondWeek: [Day]

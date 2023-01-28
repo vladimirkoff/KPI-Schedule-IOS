@@ -7,16 +7,13 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, ScheduleManagerDelegate {
+class ViewController: UIViewController, UITextFieldDelegate {
     func didFail(error: Error) {
-        print(error)
+        print("Oshybka")
     }
     
-    
-    
-    @IBOutlet weak var second: UILabel!
-    @IBOutlet weak var first: UILabel!
-    @IBOutlet weak var third: UILabel!
+    @IBOutlet weak var moonImage: UIImageView!
+    @IBOutlet weak var sunImage: UIImageView!
     @IBOutlet weak var switcher: UISwitch!
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var seacrhTextField: UITextField!
@@ -24,20 +21,25 @@ class ViewController: UIViewController, UITextFieldDelegate, ScheduleManagerDele
     var groupManager = GroupManager()
     var scheduleManager = ScheduleManager()
     
+    private var group = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         seacrhTextField.delegate = self
-        scheduleManager.delegate = self
     }
     
     @IBAction func seacrhButton(_ sender: UIButton) {
         seacrhTextField.endEditing(true)
+        self.performSegue(withIdentifier: UrlsAndStrings.segueIdentifier, sender: self)
     }
     
     @IBAction func switchMode(_ sender: UISwitch) {
         backgroundView.backgroundColor = switcher.isOn ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
+        if switcher.isOn {
+            moonImage.image = UIImage(named: "moon.fill")
+        } else {
+            sunImage.image = UIImage(named: "sun.min.fill")
+        }
     }
     
     
@@ -56,18 +58,14 @@ class ViewController: UIViewController, UITextFieldDelegate, ScheduleManagerDele
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        // Use the info
-        groupManager.performRequest(group: textField.text!)
+        self.group = textField.text!
         textField.text = ""
     }
-    func didUpdate(schedule: ScheduleModel) {
-        DispatchQueue.main.async {
-            print(schedule.name)
-            print(schedule.type)
-            print(schedule.teacherName)
-            print(schedule.time)
-            print(schedule.day)
-        }
+
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let scheduleVC = segue.destination as! ScheduleViewController
+        scheduleVC.group = group
     }
 }
 
