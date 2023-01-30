@@ -9,9 +9,11 @@ import UIKit
 
 class ScheduleCell: UITableViewCell {
 
-    @IBOutlet weak var dayLabel: UILabel!
-    @IBOutlet weak var pairLabel: UILabel!
-    
+   
+    @IBOutlet weak var teacherNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

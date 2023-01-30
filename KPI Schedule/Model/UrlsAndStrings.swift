@@ -13,3 +13,8 @@ struct UrlsAndStrings {
     static let segueIdentifier = "goToSchedule"
     static let cellIdentifier = "ReusableCell"
 }
+
+struct Test {
+    static var firstWeek = [[PairModel](), [PairModel](), [PairModel](), [PairModel](), [PairModel](), [PairModel](), ]
+    static var secondWeek = [[PairModel](), [PairModel](), [PairModel](), [PairModel](), [PairModel](), [PairModel](),]
+}

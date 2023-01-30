@@ -10,35 +10,19 @@ import UIKit
 class ScheduleViewController: UIViewController, ScheduleManagerDelegate, UITableViewDataSource {
     
     
+    var week = 1
+    var den = 0
+    @IBOutlet weak var daysSelector: UISegmentedControl!
+    @IBOutlet weak var weeksSeelctor: UISegmentedControl!
     
     var groupManager = GroupManager()
     var group = "x"
     
+    @IBOutlet weak var testLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     
-    var schedule: [ScheduleModel] = [
-        ScheduleModel(name: "ASD", type: "LAB", time: "10.25", day: "Mon", teacherName: "Molchanova"),
-        ScheduleModel(name: "Matan", type: "LEK", time: "11.00", day: "Tue", teacherName: "Vaneeva"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "ASD", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "MATAN", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Sat", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Thur", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Fri", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-        ScheduleModel(name: "OP", type: "LEK", time: "8.30", day: "Wed", teacherName: "Shems"),
-    ]
+    var schedule: [PairModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,14 +37,14 @@ class ScheduleViewController: UIViewController, ScheduleManagerDelegate, UITable
         self.dismiss(animated: true)
     }
     
-func didUpdate(schedule: ScheduleModel) {
+func didUpdate(schedule: [Int : [[PairModel]]]) {
     DispatchQueue.main.async {
-        print(schedule.type)
-        print(schedule.teacherName)
-        print(schedule.time)
-        print(schedule.day)
-        print(schedule.name)
-      }
+        for pair in schedule[self.week]![self.den] {
+            self.schedule.append(pair)
+            self.tableView.reloadData()
+        }
+    }
+    self.schedule.removeAll()
   }
     func didFail(error: Error) {
         print("Error")
@@ -72,10 +56,24 @@ func didUpdate(schedule: ScheduleModel) {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UrlsAndStrings.cellIdentifier, for: indexPath)
         as! ScheduleCell
-        cell.pairLabel?.text = schedule[indexPath.row].name
-        cell.dayLabel?.text = schedule[indexPath.row].day
+        cell.timeLabel?.text = schedule[indexPath.row].time
+        cell.typeLabel?.text = schedule[indexPath.row].type
+        cell.nameLabel?.text = schedule[indexPath.row].name
+        cell.teacherNameLabel?.text = schedule[indexPath.row].teacherName
         return cell
     }
+    
+    
+    @IBAction func weeksSelectortriggered(_ sender: UISegmentedControl) {
+        week = sender.selectedSegmentIndex + 1
+        groupManager.performRequest(group: group)
+    }
+    
+    @IBAction func daysSelectorTriggered(_ sender: UISegmentedControl) {
+        den = sender.selectedSegmentIndex + 1
+        groupManager.performRequest(group: group)
+    }
+    
 }
 
 

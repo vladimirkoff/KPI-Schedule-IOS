@@ -13,10 +13,11 @@ struct GroupModel {
     var id: String 
 }
 
-struct ScheduleModel {
+struct PairModel {
     var name: String
     var type: String
     var time: String
-    var day: String
     var teacherName: String
 }
+
+
