@@ -59,7 +59,7 @@ class ScheduleViewController: UIViewController, CurrentDayDelegate {
     }
     
     func setCurrentDay(day: Int) {
-        daysSelector.selectedSegmentIndex = day
+        daysSelector.selectedSegmentIndex = day-1
     }
 }
 
