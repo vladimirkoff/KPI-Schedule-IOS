@@ -16,9 +16,9 @@ struct ScheduleManager {
     
     func performRequest(id: String, delegate: ScheduleManagerDelegate?) {
         DispatchQueue.global().async {
-            UrlsAndStrings.urlForSchedule += id
+            UrlsAndSchedule.urlForSchedule += id
             
-            if let url = URL(string: UrlsAndStrings.urlForSchedule) {
+            if let url = URL(string: UrlsAndSchedule.urlForSchedule) {
                 let session = URLSession(configuration: .default)
                 let task = session.dataTask(with: url) { data, response, error in
                     if let e = error {
@@ -28,13 +28,12 @@ struct ScheduleManager {
                         if let schedule = self.parse2JSON(data: safeData) {
                             DispatchQueue.main.async {
                                 delegate?.didUpdate(schedule: schedule)
-                                Test.firstWeek = [[PairModel](), [PairModel](), [PairModel](), [PairModel](), [PairModel](), [PairModel](), ]
-                                Test.secondWeek = [[PairModel](), [PairModel](), [PairModel](), [PairModel](), [PairModel](), [PairModel](), ]
+                                ScheduleForWeeks.updateWeeks()
                             }
                         }
                     }
                 }
-                UrlsAndStrings.urlForSchedule = "https://schedule.kpi.ua/api/schedule/lessons?groupId="
+                UrlsAndSchedule.updateURL()
                 task.resume()
             }
         }
@@ -46,19 +45,18 @@ struct ScheduleManager {
         var den = 0
         do {
             let decodedData = try decoder.decode(ScheduleData.self, from: data)
-            var test = [1: [[PairModel]](), 2: [[PairModel]]()]
+            var schedule = [1: [[PairModel]](), 2: [[PairModel]]()]
             for day in decodedData.data.scheduleFirstWeek {
                 for para in day.pairs {
                     let name = para.name
                     let teacherName = para.teacherName
                     let time = para.time
                     let type = para.type
-                    Test.firstWeek[den].append(PairModel(name: name, type: type, time: time, teacherName: teacherName))
+                    ScheduleForWeeks.firstWeek[den].append(PairModel(name: name, type: type, time: time, teacherName: teacherName))
                 }
                 den += 1
-                            }
-          
-            test[1] = Test.firstWeek
+            }
+            schedule[1] = ScheduleForWeeks.firstWeek
             den = 0
             for day in decodedData.data.scheduleSecondWeek {
                 for para in day.pairs {
@@ -66,15 +64,14 @@ struct ScheduleManager {
                     let teacherName = para.teacherName
                     let time = para.time
                     let type = para.type
-                    Test.secondWeek[den].append(PairModel(name: name, type: type, time: time, teacherName: teacherName))
+                    ScheduleForWeeks.secondWeek[den].append(PairModel(name: name, type: type, time: time, teacherName: teacherName))
                 }
                 den += 1
         }
-            test[2] = Test.secondWeek
-           
-            return test
+            schedule[2] = ScheduleForWeeks.secondWeek
+            return schedule
         } catch {
-            print("Error occured")
+            print("Error")
         }
         return nil
     }

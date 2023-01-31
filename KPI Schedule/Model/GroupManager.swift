@@ -3,12 +3,17 @@ import Foundation
 
 private var scheduleManager = ScheduleManager()
 
+protocol GroupManagerDelegate {
+    func didFailWithGroup()
+}
+
 struct GroupManager {
     
     var delegate: ScheduleManagerDelegate?
+    var del: GroupManagerDelegate?
     
     func performRequest(group: String) {
-        if let url = URL(string: UrlsAndStrings.urlForId) {
+        if let url = URL(string: UrlsAndSchedule.urlForId) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
                 if let e = error {
@@ -33,8 +38,11 @@ struct GroupManager {
                     return GroupModel(name: groupa.name, faculty: groupa.faculty, id: groupa.id)
                 }
             }
+            DispatchQueue.main.async {
+                self.del?.didFailWithGroup()
+            }
         } catch {
-            self.delegate?.didFail(error: error)
+            print("Error occured")
         }
         return nil
     }

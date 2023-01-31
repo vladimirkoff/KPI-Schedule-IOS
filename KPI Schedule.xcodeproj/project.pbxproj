@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		851F9CB2298918B8002643A8 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F9CB1298918B8002643A8 /* ErrorManager.swift */; };
+		851F9CB629891C5A002643A8 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F9CB529891C5A002643A8 /* ErrorViewController.swift */; };
+		853C57EA29892F9800885480 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853C57E929892F9800885480 /* LoadingViewController.swift */; };
 		8551066A2984F17900EABF4F /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855106692984F17900EABF4F /* ScheduleViewController.swift */; };
 		855106702985167100EABF4F /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8551066E2985167100EABF4F /* ScheduleCell.swift */; };
 		855106712985167100EABF4F /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8551066F2985167100EABF4F /* ScheduleCell.xib */; };
@@ -20,10 +23,13 @@
 		8566D6F02983FB2E003ECB25 /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8566D6EF2983FB2E003ECB25 /* GroupModel.swift */; };
 		8566D6F22984068C003ECB25 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8566D6F12984068C003ECB25 /* ScheduleManager.swift */; };
 		85864BAE298131E5005FD3D9 /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85864BAD298131E5005FD3D9 /* GroupManager.swift */; };
-		85AE974529840F5F00A46087 /* UrlsAndStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AE974429840F5F00A46087 /* UrlsAndStrings.swift */; };
+		85AE974529840F5F00A46087 /* UrlsAndSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AE974429840F5F00A46087 /* UrlsAndSchedule.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		851F9CB1298918B8002643A8 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
+		851F9CB529891C5A002643A8 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
+		853C57E929892F9800885480 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		855106692984F17900EABF4F /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		8551066E2985167100EABF4F /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		8551066F2985167100EABF4F /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
@@ -39,7 +45,7 @@
 		8566D6EF2983FB2E003ECB25 /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		8566D6F12984068C003ECB25 /* ScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleManager.swift; sourceTree = "<group>"; };
 		85864BAD298131E5005FD3D9 /* GroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
-		85AE974429840F5F00A46087 /* UrlsAndStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlsAndStrings.swift; sourceTree = "<group>"; };
+		85AE974429840F5F00A46087 /* UrlsAndSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlsAndSchedule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 		8551066D2985163D00EABF4F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				85565F8F297E9F4A009E7E7E /* Main.storyboard */,
 				8551066E2985167100EABF4F /* ScheduleCell.swift */,
 				8551066F2985167100EABF4F /* ScheduleCell.xib */,
 			);
@@ -87,7 +94,6 @@
 				85864BAB29812ED4005FD3D9 /* Model */,
 				85565F92297E9F4A009E7E7E /* Assets.xcassets */,
 				85957C8F298161E200C6FC7C /* Controllers */,
-				85565F8F297E9F4A009E7E7E /* Main.storyboard */,
 				85565F94297E9F4A009E7E7E /* LaunchScreen.storyboard */,
 				85565F97297E9F4A009E7E7E /* Info.plist */,
 			);
@@ -101,7 +107,8 @@
 				8566D6EC2983F9FA003ECB25 /* GroupData.swift */,
 				8566D6EF2983FB2E003ECB25 /* GroupModel.swift */,
 				8566D6F12984068C003ECB25 /* ScheduleManager.swift */,
-				85AE974429840F5F00A46087 /* UrlsAndStrings.swift */,
+				85AE974429840F5F00A46087 /* UrlsAndSchedule.swift */,
+				851F9CB1298918B8002643A8 /* ErrorManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -111,6 +118,8 @@
 			children = (
 				85565F8D297E9F4A009E7E7E /* ViewController.swift */,
 				855106692984F17900EABF4F /* ScheduleViewController.swift */,
+				851F9CB529891C5A002643A8 /* ErrorViewController.swift */,
+				853C57E929892F9800885480 /* LoadingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -188,14 +197,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				85864BAE298131E5005FD3D9 /* GroupManager.swift in Sources */,
+				851F9CB629891C5A002643A8 /* ErrorViewController.swift in Sources */,
 				8566D6ED2983F9FA003ECB25 /* GroupData.swift in Sources */,
 				8566D6F22984068C003ECB25 /* ScheduleManager.swift in Sources */,
 				8551066A2984F17900EABF4F /* ScheduleViewController.swift in Sources */,
+				851F9CB2298918B8002643A8 /* ErrorManager.swift in Sources */,
 				855106702985167100EABF4F /* ScheduleCell.swift in Sources */,
 				85565F8E297E9F4A009E7E7E /* ViewController.swift in Sources */,
 				85565F8A297E9F4A009E7E7E /* AppDelegate.swift in Sources */,
-				85AE974529840F5F00A46087 /* UrlsAndStrings.swift in Sources */,
+				85AE974529840F5F00A46087 /* UrlsAndSchedule.swift in Sources */,
 				85565F8C297E9F4A009E7E7E /* SceneDelegate.swift in Sources */,
+				853C57EA29892F9800885480 /* LoadingViewController.swift in Sources */,
 				8566D6F02983FB2E003ECB25 /* GroupModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
