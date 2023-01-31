@@ -16,7 +16,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="KPI_Schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uPU-mS-5G2">
@@ -85,7 +85,7 @@
                                 <color key="tintColor" systemColor="secondarySystemBackgroundColor"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXk-la-mg6">
-                                <rect key="frame" x="290" y="410" width="76" height="96"/>
+                                <rect key="frame" x="292" y="410" width="76" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonConfiguration key="configuration" style="plain" image="paperplane.fill" catalog="system">
                                     <color key="baseForegroundColor" red="0.93333333330000001" green="0.42352941179999998" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -100,24 +100,28 @@
                     </view>
                     <navigationItem key="navigationItem" id="o6U-2U-DW3"/>
                     <connections>
+                        <outlet property="Please" destination="sDC-87-Sld" id="7oI-bD-khz"/>
                         <outlet property="backgroundView" destination="8bC-Xf-vdC" id="8dn-w2-oXE"/>
+                        <outlet property="know" destination="tVz-I5-2pv" id="h2I-O9-1S2"/>
+                        <outlet property="letMe" destination="Ffc-Bf-Zkp" id="3Ov-qN-UE3"/>
                         <outlet property="moonImage" destination="Y5S-VX-5fw" id="94i-3w-frW"/>
                         <outlet property="seacrhTextField" destination="tDO-Z8-gvD" id="lu1-Ru-QNp"/>
                         <outlet property="sunImage" destination="FIe-ur-35h" id="bLj-EV-z3i"/>
                         <outlet property="switcher" destination="uPU-mS-5G2" id="zpu-tc-l2F"/>
-                        <segue destination="oUQ-VO-RGz" kind="show" identifier="goToLoading" id="QDh-EG-4Tm"/>
+                        <outlet property="your" destination="J2a-eE-kyD" id="QAF-iA-MKE"/>
+                        <segue destination="oUQ-VO-RGz" kind="presentation" identifier="goToLoading" modalPresentationStyle="fullScreen" id="QDh-EG-4Tm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1476" y="368"/>
+            <point key="canvasLocation" x="2258" y="1245"/>
         </scene>
         <!--Schedule View Controller-->
         <scene sceneID="Tau-Mq-Uft">
             <objects>
                 <viewController id="PME-tL-qbq" customClass="ScheduleViewController" customModule="KPI_Schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ac2-RO-Kaa">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0Gp-Wc-ey7">
@@ -155,7 +159,6 @@
                                     <segment title="Wed"/>
                                     <segment title="Thu"/>
                                     <segment title="Fri"/>
-                                    <segment title="Sat"/>
                                 </segments>
                                 <connections>
                                     <action selector="daysSelectorTriggered:" destination="PME-tL-qbq" eventType="valueChanged" id="G2V-Sm-f7T"/>
@@ -166,7 +169,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Back" buttonSize="large">
-                                    <imageReference key="image" image="arrow.uturn.backward.square.fill" catalog="system" symbolScale="large" variableValue="0.0"/>
+                                    <imageReference key="image" image="chevron.left" catalog="system" symbolScale="large" variableValue="0.0"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                     <color key="baseForegroundColor" systemColor="systemBlueColor"/>
                                 </buttonConfiguration>
@@ -185,67 +188,77 @@
                         <outlet property="daysSelector" destination="qld-lR-LnC" id="X8j-8Q-s2p"/>
                         <outlet property="tableView" destination="Ddi-MR-DwD" id="XvF-nj-LE9"/>
                         <outlet property="weeksSeelctor" destination="0Gp-Wc-ey7" id="o0Q-tT-oda"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="goBackFromSchedule" modalPresentationStyle="fullScreen" id="GMs-Km-3LV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2NR-2R-c5n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5265" y="368"/>
+            <point key="canvasLocation" x="4266" y="546"/>
         </scene>
         <!--Error View Controller-->
         <scene sceneID="XKC-5D-Udy">
             <objects>
                 <viewController id="cE1-sL-WB4" customClass="ErrorViewController" customModule="KPI_Schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j5I-2O-mB9">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="group-removebg-preview" translatesAutoresizingMaskIntoConstraints="NO" id="a4n-ep-SdP">
-                                <rect key="frame" x="0.0" y="227" width="410" height="296"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="4" translatesAutoresizingMaskIntoConstraints="NO" id="a4n-ep-SdP">
+                                <rect key="frame" x="20" y="218" width="410" height="296"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Oops!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8S-DM-TPK">
-                                <rect key="frame" x="131" y="492" width="168" height="90"/>
+                                <rect key="frame" x="131" y="497" width="168" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.2274509804" green="0.52549019610000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="55"/>
+                                <color key="textColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I don't know such a group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7de-so-tgk">
+                                <rect key="frame" x="39" y="595" width="371" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7T-dE-YXH">
-                                <rect key="frame" x="168" y="629" width="75" height="35"/>
+                                <rect key="frame" x="168" y="684" width="94" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Try again"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="cE1-sL-WB4" eventType="touchUpInside" id="uAw-Xa-gAU"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VRT-OJ-Lw2"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="Color"/>
                     </view>
                     <navigationItem key="navigationItem" id="v2e-mM-o7S"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="goBackToInit" id="FuJ-ef-kdw"/>
+                        <outlet property="backgroundView" destination="j5I-2O-mB9" id="aSc-Gw-gcH"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="goBackToInit" modalPresentationStyle="fullScreen" id="FuJ-ef-kdw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hyh-6C-28E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2580" y="-541"/>
+            <point key="canvasLocation" x="2257.6744186046512" y="307.72532188841205"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="JeK-on-F0u">
             <objects>
                 <viewController id="oUQ-VO-RGz" customClass="LoadingViewController" customModule="KPI_Schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pjk-Ej-O18">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="863"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="group-removebg-preview" translatesAutoresizingMaskIntoConstraints="NO" id="41n-oF-11w">
-                                <rect key="frame" x="10" y="244" width="410" height="296"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="2" translatesAutoresizingMaskIntoConstraints="NO" id="41n-oF-11w">
+                                <rect key="frame" x="-10" y="247" width="410" height="296"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sUk-JR-lWh">
-                                <rect key="frame" x="69" y="521" width="341" height="90"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please, wait..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sUk-JR-lWh">
+                                <rect key="frame" x="69" y="537" width="341" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="55"/>
                                 <nil key="textColor"/>
@@ -253,21 +266,28 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Xan-7W-Htf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="Color"/>
                     </view>
                     <navigationItem key="navigationItem" id="FRu-5Z-62W"/>
                     <connections>
-                        <segue destination="cE1-sL-WB4" kind="show" identifier="goToError" id="p7F-eN-sb6"/>
-                        <segue destination="PME-tL-qbq" kind="show" identifier="goToSchedule" id="qUw-md-G3I"/>
+                        <outlet property="backgroundView" destination="pjk-Ej-O18" id="Ncg-7b-hoB"/>
+                        <outlet property="pleaseWait" destination="sUk-JR-lWh" id="fdf-WN-Itb"/>
+                        <segue destination="cE1-sL-WB4" kind="presentation" identifier="goToError" modalPresentationStyle="fullScreen" id="p7F-eN-sb6"/>
+                        <segue destination="PME-tL-qbq" kind="presentation" identifier="goToSchedule" modalPresentationStyle="fullScreen" id="qUw-md-G3I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGI-ah-yy1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4266" y="-541"/>
+            <point key="canvasLocation" x="4266" y="-410"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="GMs-Km-3LV"/>
+    </inferredMetricsTieBreakers>
     <resources>
-        <image name="arrow.uturn.backward.square.fill" catalog="system" width="128" height="114"/>
+        <image name="2" width="256" height="256"/>
+        <image name="4" width="256" height="256"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="group-removebg-preview" width="85.333335876464844" height="85.333335876464844"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="sun.min.fill" catalog="system" width="128" height="123"/>
@@ -279,9 +299,6 @@
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">

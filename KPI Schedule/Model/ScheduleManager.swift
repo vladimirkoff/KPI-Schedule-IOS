@@ -16,9 +16,9 @@ struct ScheduleManager {
     
     func performRequest(id: String, delegate: ScheduleManagerDelegate?) {
         DispatchQueue.global().async {
-            UrlsAndSchedule.urlForSchedule += id
+            Urls.urlForSchedule += id
             
-            if let url = URL(string: UrlsAndSchedule.urlForSchedule) {
+            if let url = URL(string: Urls.urlForSchedule) {
                 let session = URLSession(configuration: .default)
                 let task = session.dataTask(with: url) { data, response, error in
                     if let e = error {
@@ -33,7 +33,7 @@ struct ScheduleManager {
                         }
                     }
                 }
-                UrlsAndSchedule.updateURL()
+                Urls.updateURL()
                 task.resume()
             }
         }

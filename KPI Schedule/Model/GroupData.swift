@@ -39,3 +39,13 @@ struct Group: Codable {
     var faculty: String
     var id: String
 }
+
+struct CurrentInfo: Codable {
+    var data: CurrentObjs
+}
+
+struct CurrentObjs: Codable {
+    var currentWeek: Int
+    var currentDay: Int
+    var currentLesson: Int
+}

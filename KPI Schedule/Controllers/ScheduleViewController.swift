@@ -7,58 +7,59 @@
 
 import UIKit
 
-class ScheduleViewController: UIViewController {
-    
+class ScheduleViewController: UIViewController, CurrentDayDelegate {
+    var dayManager = DayManager()
     let viewController = ViewController()
     var groupManager = GroupManager()
-    var group = "x"
+    var group = "GROUP"
     var week = 1
     var den = 0
-    var schedule: [PairModel] = []
-    var test: [Int : [[PairModel]]]?
+    var scheduleArray: [PairModel] = []
+    var schedule: [Int : [[PairModel]]]?
     
-    
-    
+
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var daysSelector: UISegmentedControl!
     @IBOutlet weak var weeksSeelctor: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    func Test() {
+    func updateUI() {
         DispatchQueue.main.async {
-            let a = self.test?[self.week]![self.den]
+            let a = self.schedule?[self.week]![self.den]
             for pair in a! {
-                self.schedule.append(pair)
+                self.scheduleArray.append(pair)
                 self.tableView.reloadData()
             }
         }
-    self.schedule.removeAll()
+    self.scheduleArray.removeAll()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Test()
-//        groupManager.del = self
-//        groupManager.delegate = self
+        dayManager.delegate = self
+        dayManager.performRequest()
+        backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
+        updateUI()
         tableView.dataSource = self
-//        groupManager.performRequest(group: group)
-        tableView.register(UINib(nibName: "ScheduleCell", bundle: nil), forCellReuseIdentifier: UrlsAndSchedule.cellIdentifier)
+        tableView.register(UINib(nibName: Strings.cellName, bundle: nil), forCellReuseIdentifier: Urls.cellIdentifier)
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        self.dismiss(animated: true)
+        self.performSegue(withIdentifier: Strings.segue4Identifier, sender: self)
     }
     
     @IBAction func weeksSelectortriggered(_ sender: UISegmentedControl) {
         week = sender.selectedSegmentIndex + 1
-//        groupManager.performRequest(group: group)
-        Test()
+        updateUI()
     }
     
     @IBAction func daysSelectorTriggered(_ sender: UISegmentedControl) {
         den = sender.selectedSegmentIndex
-//        groupManager.performRequest(group: group)
-        Test()
+        updateUI()
+    }
+    
+    func setCurrentDay(day: Int) {
+        daysSelector.selectedSegmentIndex = day
     }
 }
 
@@ -66,41 +67,24 @@ class ScheduleViewController: UIViewController {
 
 extension ScheduleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return schedule.count
+        return scheduleArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UrlsAndSchedule.cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: Urls.cellIdentifier, for: indexPath)
         as! ScheduleCell
-        cell.timeLabel?.text = schedule[indexPath.row].time
-        cell.typeLabel?.text = schedule[indexPath.row].type
-        cell.nameLabel?.text = schedule[indexPath.row].name
-        cell.teacherNameLabel?.text = schedule[indexPath.row].teacherName
+        cell.timeLabel?.text = scheduleArray[indexPath.row].time
+        cell.typeLabel?.text = scheduleArray[indexPath.row].type
+        cell.nameLabel?.text = scheduleArray[indexPath.row].name
+        cell.teacherNameLabel?.text = scheduleArray[indexPath.row].teacherName
         return cell
     }
 }
-
-//MARK: - ScheduleManager
-
-//extension ScheduleViewController: ScheduleManagerDelegate {
-//    func didUpdate(schedule: [Int : [[PairModel]]]) {
-//        DispatchQueue.main.async {
-//            for pair in schedule[self.week]![self.den] {
-//                self.schedule.append(pair)
-//                self.tableView.reloadData()
-//            }
-//        }
-//    self.schedule.removeAll()
-//  }
-//    func didFail(error: Error) {
-//        print("Error")
-//    }
-//}
 
 //MARK: - GroupManager
 
 extension ScheduleViewController: GroupManagerDelegate {
     func didFailWithGroup() {
         print("An error occured")
-        self.performSegue(withIdentifier: "goToError", sender: self)
+        self.performSegue(withIdentifier: Strings.segue2Identifier, sender: self)
     }
 }

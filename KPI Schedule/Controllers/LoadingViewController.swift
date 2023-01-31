@@ -9,58 +9,39 @@ import UIKit
 
 class LoadingViewController: UIViewController, ScheduleManagerDelegate, GroupManagerDelegate {
     
+    @IBOutlet weak var pleaseWait: UILabel!
+    @IBOutlet var backgroundView: UIView!
+    
     var group = "x"
-    
     var schedule: [Int : [[PairModel]]]?
-    
-    func didFailWithGroup() {
-        self.performSegue(withIdentifier: "goToError", sender: self)
-    }
-    
-    
-    func didUpdate(schedule: [Int : [[PairModel]]]) {
-//        DispatchQueue.main.async {
-//            for pair in schedule[self.week]![self.den] {
-//                self.schedule.append(pair)
-//                self.tableView.reloadData()
-//            }
-//        }
-//    self.schedule.removeAll()
-        self.schedule = schedule
-        self.performSegue(withIdentifier: UrlsAndSchedule.segueIdentifier, sender: self)
-    }
-    
-    func didFail(error: Error) {
-        self.performSegue(withIdentifier: "goToError", sender: self)
-    }
-   
-    
-    
     var groupManager = GroupManager()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
         groupManager.delegate = self
         groupManager.del = self
         groupManager.performRequest(group: group)
+        pleaseWait.textColor = Tracker.mode ? .white : .black
+    }
+    
+    func didFailWithGroup() {
+        self.performSegue(withIdentifier: Strings.segue2Identifier, sender: self)
+    }
+    
+    func didUpdate(schedule: [Int : [[PairModel]]]) {
+        self.schedule = schedule
+        self.performSegue(withIdentifier: Urls.segueIdentifier, sender: self)
+    }
+    
+    func didFail(error: Error) {
+        self.performSegue(withIdentifier: Strings.segue2Identifier, sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToSchedule" {
+        if segue.identifier == Strings.segueIdentifier {
             let scheduleVC = segue.destination as! ScheduleViewController
-            scheduleVC.test = self.schedule
+            scheduleVC.schedule = self.schedule
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

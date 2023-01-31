@@ -9,14 +9,22 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
-    
-    
     private var group = ""
     private var groupManager = GroupManager()
     private let scheduleManager = ScheduleManager()
     
+    
+    
+    
+    
+    
+    @IBOutlet weak var your: UILabel!
+    @IBOutlet weak var know: UILabel!
+    @IBOutlet weak var letMe: UILabel!
+    @IBOutlet weak var Please: UILabel!
     @IBOutlet weak var moonImage: UIImageView!
+    
+    
     @IBOutlet weak var sunImage: UIImageView!
     @IBOutlet weak var switcher: UISwitch!
     @IBOutlet var backgroundView: UIView!
@@ -25,28 +33,35 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         seacrhTextField?.delegate = self
+        backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
+        switcher.isOn = Tracker.mode
+        changeTextColor(mode: Tracker.mode)
     }
     
     @IBAction func seacrhButton(_ sender: UIButton) {
         if seacrhTextField.text == "" {
-            self.alert()
+            alert()
         } else {
             seacrhTextField.endEditing(true)
-            self.performSegue(withIdentifier: "goToLoading", sender: self)
+            self.performSegue(withIdentifier: Strings.segue1Identifier, sender: self)
         }
     }
     
     @IBAction func switchMode(_ sender: UISwitch) {
-        backgroundView.backgroundColor = switcher.isOn ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
-        if switcher.isOn {
+        Tracker.mode = sender.isOn
+        backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
+        if Tracker.mode {
             moonImage.image = UIImage(systemName: "moon.fill")
+            moonImage.tintColor = .white
             sunImage.image = nil
+            changeTextColor(mode: Tracker.mode)
         } else {
-            sunImage.image = UIImage(systemName: "sun.min.fill")
+            sunImage.image = UIImage(systemName: "sun.max.fill")
             moonImage.image = nil
+            changeTextColor(mode: Tracker.mode)
         }
     }
-    func alert() {
+    private func alert() {
         let alert = UIAlertController(title: "Oops!", message: "It seems like you have not typed the group!", preferredStyle: .alert)
              let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
              })
@@ -64,14 +79,33 @@ class ViewController: UIViewController {
             loadingVC.group = group
         }
     }
+    func changeTextColor(mode: Bool) {
+        if mode {
+            Please.textColor = .white
+            letMe.textColor = .white
+            know.textColor = .white
+            your.textColor = .white
+        } else {
+            Please.textColor = .black
+            letMe.textColor = .black
+            know.textColor = .black
+            your.textColor = .black
+        }
+    }
 }
 
 //MARK: - UITextField
 
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.endEditing(true)                      // the user pressed the return key!
-        print(textField.text!)
+                             // the user pressed the return key!
+        if seacrhTextField.text == "" {
+            alert()
+        } else {
+            seacrhTextField.endEditing(true)
+            self.performSegue(withIdentifier: Strings.segue1Identifier, sender: self)
+        }
+        textField.endEditing(true) 
         return true
     }
     
@@ -84,6 +118,7 @@ extension ViewController: UITextFieldDelegate {
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
         self.group = textField.text!
         textField.text = ""
     }

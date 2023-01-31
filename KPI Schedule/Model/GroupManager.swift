@@ -13,7 +13,7 @@ struct GroupManager {
     var del: GroupManagerDelegate?
     
     func performRequest(group: String) {
-        if let url = URL(string: UrlsAndSchedule.urlForId) {
+        if let url = URL(string: Urls.urlForId) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
                 if let e = error {
