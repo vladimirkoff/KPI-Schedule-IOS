@@ -15,6 +15,9 @@ struct ScheduleData: Codable {
     var data: Schedule
 }
 
+struct CurrentData: Codable {
+    var data: CurrentObjs
+}
 
 
 struct Schedule: Codable {
@@ -40,9 +43,6 @@ struct Group: Codable {
     var id: String
 }
 
-struct CurrentInfo: Codable {
-    var data: CurrentObjs
-}
 
 struct CurrentObjs: Codable {
     var currentWeek: Int

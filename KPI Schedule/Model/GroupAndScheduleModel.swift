@@ -20,4 +20,7 @@ struct PairModel {
     var teacherName: String
 }
 
-
+struct CurrentInfoDB {
+    static var lesson = 0
+    static var day = 0
+}

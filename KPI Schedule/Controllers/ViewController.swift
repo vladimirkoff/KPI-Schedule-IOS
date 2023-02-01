@@ -14,17 +14,11 @@ class ViewController: UIViewController {
     private let scheduleManager = ScheduleManager()
     
     
-    
-    
-    
-    
     @IBOutlet weak var your: UILabel!
     @IBOutlet weak var know: UILabel!
     @IBOutlet weak var letMe: UILabel!
     @IBOutlet weak var Please: UILabel!
     @IBOutlet weak var moonImage: UIImageView!
-    
-    
     @IBOutlet weak var sunImage: UIImageView!
     @IBOutlet weak var switcher: UISwitch!
     @IBOutlet var backgroundView: UIView!
@@ -118,7 +112,6 @@ extension ViewController: UITextFieldDelegate {
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
         self.group = textField.text!
         textField.text = ""
     }

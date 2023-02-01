@@ -36,3 +36,14 @@ struct ScheduleForWeeks {
         secondWeek = [[PairModel](), [PairModel](), [PairModel](), [PairModel](), [PairModel](), [PairModel](),]
     }
 }
+
+struct CurrentLesson {
+    static let lessonTime = [
+        1: "8.30",
+        2: "10.25",
+        3: "12.20",
+        4: "14.15",
+        5: "16.10",
+        6: "18.30",
+    ]
+}

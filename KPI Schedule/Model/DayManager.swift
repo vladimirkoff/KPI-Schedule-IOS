@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CurrentDayDelegate {
-    func setCurrentDay(day: Int)
+    func setCurrentDayWeekLesson(day: Int, lesson: Int)
 }
 
 struct DayManager {
@@ -22,23 +22,21 @@ struct DayManager {
                     print(e)
                 }
                 if let safeData = data {
-                        if let day = parseJSON(data: safeData){
+                        if let current = parseJSON(data: safeData){
                             DispatchQueue.main.async {
-                                self.delegate?.setCurrentDay(day: day)
+                                self.delegate?.setCurrentDayWeekLesson(day: current[0], lesson: current[2])
                             }
-                            
-
                     }
                 }
             }
             task.resume()
         }
     }
-    func parseJSON(data: Data) -> Int? {
+    func parseJSON(data: Data) -> [Int]? {
         let decoder = JSONDecoder()
         do {
-            let decodedData =  try decoder.decode(CurrentInfo.self, from: data)
-            return decodedData.data.currentDay
+            let decodedData =  try decoder.decode(CurrentData.self, from: data)
+            return [decodedData.data.currentDay, decodedData.data.currentWeek, decodedData.data.currentLesson]
         } catch {
             print("Error in current data")
         }

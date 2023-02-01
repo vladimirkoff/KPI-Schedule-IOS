@@ -8,24 +8,30 @@
 import UIKit
 
 class ScheduleViewController: UIViewController, CurrentDayDelegate {
+   
     var dayManager = DayManager()
     let viewController = ViewController()
     var groupManager = GroupManager()
-    var group = "GROUP"
-    var week = 1
-    var den = 0
+    
     var scheduleArray: [PairModel] = []
     var schedule: [Int : [[PairModel]]]?
     
+    var group = "GROUP"
+    var week = 1
+    var den = 0
 
+    
+    
+    
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var daysSelector: UISegmentedControl!
     @IBOutlet weak var weeksSeelctor: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    func updateUI() {
+    func updateUI(week: Int, day: Int) {
         DispatchQueue.main.async {
-            let a = self.schedule?[self.week]![self.den]
+            print(day)
+            let a = self.schedule?[week]![day]
             for pair in a! {
                 self.scheduleArray.append(pair)
                 self.tableView.reloadData()
@@ -36,12 +42,12 @@ class ScheduleViewController: UIViewController, CurrentDayDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateUI(week: 1, day: 1)
         dayManager.delegate = self
-        dayManager.performRequest()
-        backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
-        updateUI()
         tableView.dataSource = self
+        backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
         tableView.register(UINib(nibName: Strings.cellName, bundle: nil), forCellReuseIdentifier: Urls.cellIdentifier)
+        dayManager.performRequest()
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -49,17 +55,23 @@ class ScheduleViewController: UIViewController, CurrentDayDelegate {
     }
     
     @IBAction func weeksSelectortriggered(_ sender: UISegmentedControl) {
-        week = sender.selectedSegmentIndex + 1
-        updateUI()
+        week = sender.selectedSegmentIndex+1
+        updateUI(week: self.week, day: self.den)
     }
     
     @IBAction func daysSelectorTriggered(_ sender: UISegmentedControl) {
+        print("Changed")
         den = sender.selectedSegmentIndex
-        updateUI()
+        updateUI(week: self.week, day: self.den)
     }
-    
-    func setCurrentDay(day: Int) {
-        daysSelector.selectedSegmentIndex = day-1
+    func setCurrentDayWeekLesson(day: Int, lesson: Int) {
+        
+        DispatchQueue.main.async {
+            self.daysSelector.selectedSegmentIndex = day-1
+            self.daysSelector.sendActions(for: .valueChanged)
+            CurrentInfoDB.day = day
+            CurrentInfoDB.lesson = lesson
+        }
     }
 }
 
@@ -72,10 +84,14 @@ extension ScheduleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Urls.cellIdentifier, for: indexPath)
         as! ScheduleCell
-        cell.timeLabel?.text = scheduleArray[indexPath.row].time
-        cell.typeLabel?.text = scheduleArray[indexPath.row].type
-        cell.nameLabel?.text = scheduleArray[indexPath.row].name
-        cell.teacherNameLabel?.text = scheduleArray[indexPath.row].teacherName
+        let cellText = scheduleArray[indexPath.row]
+        
+        if (CurrentLesson.lessonTime[CurrentInfoDB.lesson] == cellText.time
+            && daysSelector.selectedSegmentIndex == CurrentInfoDB.day-1)
+            {cell.timeLabel?.text = "\(cellText.time)   🔴NOW"} else {cell.timeLabel?.text = cellText.time}
+        cell.typeLabel?.text = cellText.type
+        cell.nameLabel?.text = cellText.name
+        cell.teacherNameLabel?.text = cellText.teacherName
         return cell
     }
 }
