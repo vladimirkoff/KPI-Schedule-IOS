@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ScheduleViewController: UIViewController, CurrentDayDelegate {
+class ScheduleViewController: UIViewController {
    
     var dayManager = DayManager()
     let viewController = ViewController()
@@ -20,9 +20,6 @@ class ScheduleViewController: UIViewController, CurrentDayDelegate {
     var week = 1
     var den = 0
 
-    
-    
-    
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var daysSelector: UISegmentedControl!
     @IBOutlet weak var weeksSeelctor: UISegmentedControl!
@@ -30,7 +27,6 @@ class ScheduleViewController: UIViewController, CurrentDayDelegate {
     
     func updateUI(week: Int, day: Int) {
         DispatchQueue.main.async {
-            print(day)
             let a = self.schedule?[week]![day]
             for pair in a! {
                 self.scheduleArray.append(pair)
@@ -42,12 +38,11 @@ class ScheduleViewController: UIViewController, CurrentDayDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI(week: 1, day: 1)
         dayManager.delegate = self
         tableView.dataSource = self
         backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
         tableView.register(UINib(nibName: Strings.cellName, bundle: nil), forCellReuseIdentifier: Urls.cellIdentifier)
-        dayManager.performRequest()
+        dayManager.performRequestForCurrentInfo()
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -60,18 +55,23 @@ class ScheduleViewController: UIViewController, CurrentDayDelegate {
     }
     
     @IBAction func daysSelectorTriggered(_ sender: UISegmentedControl) {
-        print("Changed")
         den = sender.selectedSegmentIndex
         updateUI(week: self.week, day: self.den)
     }
+}
+
+//MARK: - ВАperformRequestForCurrentInfo
+
+extension ScheduleViewController: CurrentDayDelegate {
+    func didFailWithCurrentInfo() {
+        print("ERROR")
+    }
+    
     func setCurrentDayWeekLesson(day: Int, lesson: Int) {
-        
-        DispatchQueue.main.async {
             self.daysSelector.selectedSegmentIndex = day-1
             self.daysSelector.sendActions(for: .valueChanged)
             CurrentInfoDB.day = day
             CurrentInfoDB.lesson = lesson
-        }
     }
 }
 
@@ -82,13 +82,14 @@ extension ScheduleViewController: UITableViewDataSource {
         return scheduleArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Urls.cellIdentifier, for: indexPath)
-        as! ScheduleCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Urls.cellIdentifier, for: indexPath) as! ScheduleCell
         let cellText = scheduleArray[indexPath.row]
         
+        tableView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
         if (CurrentLesson.lessonTime[CurrentInfoDB.lesson] == cellText.time
             && daysSelector.selectedSegmentIndex == CurrentInfoDB.day-1)
             {cell.timeLabel?.text = "\(cellText.time)   🔴NOW"} else {cell.timeLabel?.text = cellText.time}
+        
         cell.typeLabel?.text = cellText.type
         cell.nameLabel?.text = cellText.name
         cell.teacherNameLabel?.text = cellText.teacherName

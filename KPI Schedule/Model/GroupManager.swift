@@ -12,7 +12,7 @@ struct GroupManager {
     var delegate: ScheduleManagerDelegate?
     var del: GroupManagerDelegate?
     
-    func performRequest(group: String) {
+    func performRequestForGroup(group: String) {
         if let url = URL(string: Urls.urlForId) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
@@ -21,7 +21,7 @@ struct GroupManager {
                 }
                 if let safeData = data {
                     if let grouppa = self.parseJSON(data: safeData, group: group) {
-                          scheduleManager.performRequest(id: grouppa.id, delegate: delegate)
+                          scheduleManager.performRequestForSchedule(id: grouppa.id, delegate: delegate)
                     }
                 }
             }
@@ -42,7 +42,7 @@ struct GroupManager {
                 self.del?.didFailWithGroup()
             }
         } catch {
-            print("Error occured")
+            delegate?.didFail(error: error)
         }
         return nil
     }

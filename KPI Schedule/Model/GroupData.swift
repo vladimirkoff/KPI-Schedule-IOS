@@ -43,7 +43,6 @@ struct Group: Codable {
     var id: String
 }
 
-
 struct CurrentObjs: Codable {
     var currentWeek: Int
     var currentDay: Int

@@ -9,12 +9,13 @@ import Foundation
 
 protocol CurrentDayDelegate {
     func setCurrentDayWeekLesson(day: Int, lesson: Int)
+    func didFailWithCurrentInfo()
 }
 
 struct DayManager {
     
     var delegate: CurrentDayDelegate?
-    func performRequest() {
+    func performRequestForCurrentInfo() {
         if let url = URL(string: Urls.urlForCurrentInfo) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
@@ -38,7 +39,7 @@ struct DayManager {
             let decodedData =  try decoder.decode(CurrentData.self, from: data)
             return [decodedData.data.currentDay, decodedData.data.currentWeek, decodedData.data.currentLesson]
         } catch {
-            print("Error in current data")
+            delegate?.didFailWithCurrentInfo()
         }
         return nil
     }

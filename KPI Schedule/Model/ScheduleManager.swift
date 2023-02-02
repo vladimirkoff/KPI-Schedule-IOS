@@ -13,8 +13,9 @@ protocol ScheduleManagerDelegate {
 }
 
 struct ScheduleManager {
-    
-    func performRequest(id: String, delegate: ScheduleManagerDelegate?) {
+
+     func performRequestForSchedule(id: String, delegate: ScheduleManagerDelegate?) {
+        let del = delegate
         DispatchQueue.global().async {
             Urls.urlForSchedule += id
             
@@ -25,7 +26,7 @@ struct ScheduleManager {
                         delegate?.didFail(error: e)
                     }
                     if let safeData = data {
-                        if let schedule = self.parse2JSON(data: safeData) {
+                        if let schedule = self.parse2JSON(data: safeData, delegate: del) {
                             DispatchQueue.main.async {
                                 delegate?.didUpdate(schedule: schedule)
                                 ScheduleForWeeks.updateWeeks()
@@ -40,7 +41,7 @@ struct ScheduleManager {
         
     }
     
-    func parse2JSON(data: Data) -> [Int : [[PairModel]]]? {
+    func parse2JSON(data: Data, delegate: ScheduleManagerDelegate?) -> [Int : [[PairModel]]]? {
         let decoder = JSONDecoder()
         var den = 0
         do {
@@ -71,7 +72,7 @@ struct ScheduleManager {
             schedule[2] = ScheduleForWeeks.secondWeek
             return schedule
         } catch {
-            print("Error")
+            delegate?.didFail(error: error)
         }
         return nil
     }

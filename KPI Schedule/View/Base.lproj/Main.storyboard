@@ -90,16 +90,13 @@
                                     <action selector="seacrhButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EQ5-d1-Stx"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Радіо_КПІ._Лого (1)" translatesAutoresizingMaskIntoConstraints="NO" id="Fga-Ls-NNy">
-                                <rect key="frame" x="121.33333333333333" y="508.33333333333331" width="150.33333333333337" height="184.66666666666669"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="8535E96FE45B84B817A796DBD05_4AAC618A_BDCA" translatesAutoresizingMaskIntoConstraints="NO" id="Fga-Ls-NNy">
+                                <rect key="frame" x="25" y="454" width="343" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY" colorLabel="IBBuiltInLabel-Green"/>
                         <color key="backgroundColor" name="Color"/>
-                        <constraints>
-                            <constraint firstItem="Fga-Ls-NNy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bhi-ZK-aVr"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Fga-Ls-NNy" secondAttribute="bottom" constant="125" id="pAd-xG-fe4"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="o6U-2U-DW3"/>
                     <connections>
@@ -117,7 +114,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2258" y="1245"/>
+            <point key="canvasLocation" x="3369" y="1250"/>
         </scene>
         <!--Schedule View Controller-->
         <scene sceneID="Tau-Mq-Uft">
@@ -138,7 +135,7 @@
                                     <segment title="Second Week"/>
                                 </segments>
                                 <connections>
-                                    <action selector="weeksSelectortriggered:" destination="PME-tL-qbq" eventType="valueChanged" id="f79-kd-cDV"/>
+                                    <action selector="weeksSelectortriggered:" destination="PME-tL-qbq" eventType="valueChanged" id="yl7-bS-d0W"/>
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Ddi-MR-DwD">
@@ -169,7 +166,7 @@
                                     <segment title="Fri"/>
                                 </segments>
                                 <connections>
-                                    <action selector="daysSelectorTriggered:" destination="PME-tL-qbq" eventType="valueChanged" id="G2V-Sm-f7T"/>
+                                    <action selector="daysSelectorTriggered:" destination="PME-tL-qbq" eventType="valueChanged" id="uGd-yi-ay5"/>
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IB-53-HZV">
@@ -209,15 +206,15 @@
                     <navigationItem key="navigationItem" id="bSD-zQ-66W"/>
                     <connections>
                         <outlet property="backgroundView" destination="Ac2-RO-Kaa" id="4Dm-HI-AYs"/>
-                        <outlet property="daysSelector" destination="qld-lR-LnC" id="X8j-8Q-s2p"/>
+                        <outlet property="daysSelector" destination="qld-lR-LnC" id="vjM-Rt-Abp"/>
                         <outlet property="tableView" destination="Ddi-MR-DwD" id="XvF-nj-LE9"/>
-                        <outlet property="weeksSeelctor" destination="0Gp-Wc-ey7" id="o0Q-tT-oda"/>
+                        <outlet property="weeksSeelctor" destination="0Gp-Wc-ey7" id="esw-zS-uYb"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="goBackFromSchedule" modalPresentationStyle="fullScreen" id="GMs-Km-3LV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2NR-2R-c5n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4264.8854961832058" y="545.77464788732402"/>
+            <point key="canvasLocation" x="6517" y="531"/>
         </scene>
         <!--Error View Controller-->
         <scene sceneID="XKC-5D-Udy">
@@ -275,7 +272,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hyh-6C-28E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2257.6744186046512" y="307.72532188841205"/>
+            <point key="canvasLocation" x="2242" y="485"/>
         </scene>
         <!--Loading View Controller-->
         <scene sceneID="JeK-on-F0u">
@@ -339,20 +336,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGI-ah-yy1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4264.8854961832058" y="-400"/>
+            <point key="canvasLocation" x="4262" y="-458"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GMs-Km-3LV"/>
+        <segue reference="FuJ-ef-kdw"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="2" width="256" height="256"/>
         <image name="4" width="256" height="256"/>
+        <image name="8535E96FE45B84B817A796DBD05_4AAC618A_BDCA" width="1764" height="786"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="group-removebg-preview" width="85.333335876464844" height="85.333335876464844"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="sun.min.fill" catalog="system" width="128" height="123"/>
-        <image name="Радіо_КПІ._Лого (1)" width="150.33332824707031" height="184.66667175292969"/>
         <namedColor name="Color">
             <color red="0.77600002288818359" green="0.67500001192092896" blue="0.56099998950958252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

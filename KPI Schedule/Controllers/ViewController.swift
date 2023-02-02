@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     private var group = ""
     private var groupManager = GroupManager()
     private let scheduleManager = ScheduleManager()
+    let window = UIWindow()
     
     
     @IBOutlet weak var your: UILabel!
