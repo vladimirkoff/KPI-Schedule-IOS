@@ -11,6 +11,8 @@
 
 
 
+
+
 1. Clone this repository
 
 ```bash
@@ -33,7 +35,7 @@ git clone https://github.com/vladimirkoff/KPI-Schedule-IOS.git
 
 | Dark  | Light |
 | ------------- | ------------- | 
-|![Simulator Screen Shot - iPhone 14 Pro - 2023-04-12 at 13 08 01](https://user-images.githubusercontent.com/115025494/231427205-537872ed-978b-451b-af49-44c4a4971262.png)|![Simulator Screen Shot - iPhone 14 Pro - 2023-04-12 at 13 07 58](https://user-images.githubusercontent.com/115025494/231427196-8e09cd0c-3d91-4c8b-97d9-7b08d69ecda0.png)| 
+|![Simulator Screen Shot - iPhone 14 Pro - 2023-04-12 at 13 16 54](https://user-images.githubusercontent.com/115025494/231428631-c72718e3-2064-4059-aa48-f9804541ca91.png)|![Simulator Screen Shot - iPhone 14 Pro - 2023-04-12 at 13 16 57](https://user-images.githubusercontent.com/115025494/231428638-15da6ffe-33b3-41db-8a95-1e2148d22031.png)| 
 
 ###  Check weather
 
