@@ -14,7 +14,7 @@ protocol ScheduleManagerDelegate {
 
 struct ScheduleManager {
     
-    func performRequestForSchedule(id: String, delegate: ScheduleManagerDelegate?) {
+  static  func performRequestForSchedule(id: String, delegate: ScheduleManagerDelegate?) {
         let del = delegate
         DispatchQueue.global().async {
             Urls.URL_FOR_SCHEDULE += id
@@ -41,7 +41,7 @@ struct ScheduleManager {
         
     }
     
-    func parse2JSON(data: Data, delegate: ScheduleManagerDelegate?) -> [Int : [[PairModel]]]? {
+  static  func parse2JSON(data: Data, delegate: ScheduleManagerDelegate?) -> [Int : [[PairModel]]]? {
         let decoder = JSONDecoder()
         var den = 0
         do {

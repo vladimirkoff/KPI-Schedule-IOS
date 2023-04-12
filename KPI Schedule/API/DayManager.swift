@@ -14,8 +14,9 @@ protocol CurrentDayDelegate {
 
 struct DayManager {
     
-    var delegate: CurrentDayDelegate?
-    func performRequestForCurrentInfo() {
+    static var delegate: CurrentDayDelegate?
+    
+    static  func performRequestForCurrentInfo() {
         if let url = URL(string: Urls.URL_FOR_CURRENT_INFO) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
@@ -33,7 +34,7 @@ struct DayManager {
             task.resume()
         }
     }
-    func parseJSON(data: Data) -> [Int]? {
+  static  func parseJSON(data: Data) -> [Int]? {
         let decoder = JSONDecoder()
         do {
             let decodedData =  try decoder.decode(CurrentData.self, from: data)

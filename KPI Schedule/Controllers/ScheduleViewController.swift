@@ -10,9 +10,7 @@ import UIKit
 class ScheduleViewController: UIViewController {
     //MARK: - Properties
     
-    var dayManager = DayManager()
     let viewController = SearchViewController()
-    var groupManager = GroupManager()
     
     var scheduleArray: [PairModel] = []
     var schedule: [Int : [[PairModel]]]?
@@ -41,10 +39,10 @@ class ScheduleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dayManager.delegate = self
+        DayManager.delegate = self
         configureUI()
         configureTableView()
-        dayManager.performRequestForCurrentInfo()
+        DayManager.performRequestForCurrentInfo()
     }
     
     //MARK: - Helpers

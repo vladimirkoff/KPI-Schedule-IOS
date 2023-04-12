@@ -10,18 +10,15 @@ import UIKit
 class SearchViewController: UIViewController {
     //MARK: - Properties
     
-    @IBOutlet weak var welcomeImageView: UIImageView!
-    private var group = ""
-    private var groupManager = GroupManager()
-    private let scheduleManager = ScheduleManager()
-    let window = UIWindow()
-    
- 
     @IBOutlet weak var moonImage: UIImageView!
     @IBOutlet weak var sunImage: UIImageView!
     @IBOutlet weak var switcher: UISwitch!
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var seacrhTextField: UITextField!
+    @IBOutlet weak var welcomeImageView: UIImageView!
+    
+    private var group = ""
+    
     
     //MARK: - Lifecycle
     
@@ -44,16 +41,7 @@ class SearchViewController: UIViewController {
     @IBAction func switchMode(_ sender: UISwitch) {
         Tracker.mode = sender.isOn
         backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
-        if Tracker.mode {
-            moonImage.image = UIImage(systemName: "moon.fill")
-            moonImage.tintColor = .white
-            sunImage.image = nil
-            changeTextColor(mode: Tracker.mode)
-        } else {
-            sunImage.image = UIImage(systemName: "sun.max.fill")
-            moonImage.image = nil
-            changeTextColor(mode: Tracker.mode)
-        }
+        changeAppearance(mode: Tracker.mode)
     }
     
     //MARK: - Alert
@@ -65,14 +53,12 @@ class SearchViewController: UIViewController {
         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
         })
         alert.addAction(cancel)
-        DispatchQueue.main.async(execute: {
-            self.present(alert, animated: true)
-        })
+        present(alert, animated: true)
     }
     
     //MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToLoading" {
+        if segue.identifier == Identifiers.GO_TO_LOADING_SEGUE {
             let loadingVC = segue.destination as! LoadingViewController
             loadingVC.group = group
         }
@@ -85,6 +71,19 @@ class SearchViewController: UIViewController {
         backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
         switcher.isOn = Tracker.mode
         changeTextColor(mode: Tracker.mode)
+    }
+    
+    func changeAppearance(mode: Bool) {
+        if mode {
+            moonImage.image = UIImage(systemName: "moon.fill")
+            moonImage.tintColor = .white
+            sunImage.image = nil
+            changeTextColor(mode: Tracker.mode)
+        } else {
+            sunImage.image = UIImage(systemName: "sun.max.fill")
+            moonImage.image = nil
+            changeTextColor(mode: Tracker.mode)
+        }
     }
     
     

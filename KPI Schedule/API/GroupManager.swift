@@ -21,7 +21,7 @@ struct GroupManager {
                 }
                 if let safeData = data {
                     if let grouppa = self.parseJSON(data: safeData, group: group) {
-                        scheduleManager.performRequestForSchedule(id: grouppa.id, delegate: delegate)
+                        ScheduleManager.performRequestForSchedule(id: grouppa.id, delegate: delegate)
                     }
                 }
             }
