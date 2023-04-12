@@ -18,10 +18,11 @@ struct DayManager {
     
     static  func performRequestForCurrentInfo() {
         if let url = URL(string: Urls.URL_FOR_CURRENT_INFO) {
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { data, response, error in
-                if let e = error {
-                    print(e)
+            
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
                 }
                 if let safeData = data {
                     if let current = parseJSON(data: safeData){
@@ -31,13 +32,12 @@ struct DayManager {
                     }
                 }
             }
-            task.resume()
+            .resume()
         }
     }
-  static  func parseJSON(data: Data) -> [Int]? {
-        let decoder = JSONDecoder()
+    static  func parseJSON(data: Data) -> [Int]? {
         do {
-            let decodedData =  try decoder.decode(CurrentData.self, from: data)
+            let decodedData =  try JSONDecoder().decode(CurrentData.self, from: data)
             return [decodedData.data.currentDay, decodedData.data.currentWeek, decodedData.data.currentLesson]
         } catch {
             delegate?.didFailWithCurrentInfo()

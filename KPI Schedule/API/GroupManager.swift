@@ -1,7 +1,6 @@
 
 import Foundation
 
-private var scheduleManager = ScheduleManager()
 
 protocol GroupManagerDelegate {
     func didFailWithGroup()
@@ -9,40 +8,46 @@ protocol GroupManagerDelegate {
 
 struct GroupManager {
     
-    var delegate: ScheduleManagerDelegate?
-    var del: GroupManagerDelegate?
+    static var delegate: ScheduleManagerDelegate?
     
-    func performRequestForGroup(group: String) {
+    static func performRequestForGroup(group: String, completion: @escaping(GroupModel) -> ()) {
         if let url = URL(string: Urls.URL_FOR_ID) {
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { data, response, error in
-                if let e = error {
-                    self.delegate?.didFail(error: e)
-                }
+            
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    DispatchQueue.main.async {
+                        print("Error getting group - \(error.localizedDescription)")
+                        delegate?.didFail()
+                        return
+                    }                }
                 if let safeData = data {
-                    if let grouppa = self.parseJSON(data: safeData, group: group) {
-                        ScheduleManager.performRequestForSchedule(id: grouppa.id, delegate: delegate)
+                    if let group = self.parseJSON(data: safeData, group: group) {
+                        DispatchQueue.main.async {
+                            completion(group)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            delegate?.didFail()
+                        }
                     }
                 }
             }
-            task.resume()
+            .resume()
         }
     }
-    func parseJSON(data: Data, group: String) -> GroupModel? {
-        let decoder = JSONDecoder()
-        
+    
+    static func parseJSON(data: Data, group: String) -> GroupModel? {
         do {
-            let decodedData = try decoder.decode(GroupData.self, from: data)
+            let decodedData = try JSONDecoder().decode(GroupData.self, from: data)
             for groupa in decodedData.data {
                 if groupa.name == group {
                     return GroupModel(name: groupa.name, faculty: groupa.faculty, id: groupa.id)
                 }
             }
-            DispatchQueue.main.async {
-                self.del?.didFailWithGroup()
-            }
         } catch {
-            delegate?.didFail(error: error)
+            DispatchQueue.main.async {
+                delegate?.didFail()
+            }
         }
         return nil
     }

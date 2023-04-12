@@ -9,43 +9,44 @@ import Foundation
 
 protocol ScheduleManagerDelegate {
     func didUpdate(schedule: [Int : [[PairModel]]])
-    func didFail(error: Error)
+    func didFail()
 }
 
 struct ScheduleManager {
     
-  static  func performRequestForSchedule(id: String, delegate: ScheduleManagerDelegate?) {
-        let del = delegate
+    static var delegate: ScheduleManagerDelegate?
+    
+    static func performRequestForSchedule(id: String) {
         DispatchQueue.global().async {
             Urls.URL_FOR_SCHEDULE += id
             
             if let url = URL(string: Urls.URL_FOR_SCHEDULE) {
-                let session = URLSession(configuration: .default)
-                let task = session.dataTask(with: url) { data, response, error in
-                    if let e = error {
-                        delegate?.didFail(error: e)
+                
+                URLSession.shared.dataTask(with: url) { data, response, error in
+                    if let error = error {
+                        print("Error getting schedule - \(error.localizedDescription)")
+                        delegate?.didFail()
+                        return
                     }
                     if let safeData = data {
-                        if let schedule = self.parse2JSON(data: safeData, delegate: del) {
+                        if let schedule = self.parse2JSON(data: safeData) {
                             DispatchQueue.main.async {
                                 delegate?.didUpdate(schedule: schedule)
-                                ScheduleForWeeks.updateWeeks()
                             }
                         }
                     }
                 }
+                .resume()
                 Urls.updateURL()
-                task.resume()
             }
         }
         
     }
     
-  static  func parse2JSON(data: Data, delegate: ScheduleManagerDelegate?) -> [Int : [[PairModel]]]? {
-        let decoder = JSONDecoder()
+    static  func parse2JSON(data: Data) -> [Int : [[PairModel]]]? {
         var den = 0
         do {
-            let decodedData = try decoder.decode(ScheduleData.self, from: data)
+            let decodedData = try JSONDecoder().decode(ScheduleData.self, from: data)
             var schedule = [1: [[PairModel]](), 2: [[PairModel]]()]
             for day in decodedData.data.scheduleFirstWeek {
                 for para in day.pairs {
@@ -72,7 +73,7 @@ struct ScheduleManager {
             schedule[2] = ScheduleForWeeks.secondWeek
             return schedule
         } catch {
-            delegate?.didFail(error: error)
+            delegate?.didFail()
         }
         return nil
     }

@@ -30,12 +30,12 @@ class SearchViewController: UIViewController {
     //MARK: - Actions
     
     @IBAction func seacrhButton(_ sender: UIButton) {
-        if seacrhTextField.text == "" {
+        guard !seacrhTextField.text!.isEmpty else {
             alert()
-        } else {
-            seacrhTextField.endEditing(true)
-            self.performSegue(withIdentifier: Identifiers.GO_TO_LOADING_SEGUE, sender: self)
+            return
         }
+        seacrhTextField.endEditing(true)
+        self.performSegue(withIdentifier: Identifiers.GO_TO_LOADING_SEGUE, sender: self)
     }
     
     @IBAction func switchMode(_ sender: UISwitch) {
@@ -88,17 +88,6 @@ class SearchViewController: UIViewController {
     
     
     func changeTextColor(mode: Bool) {
-//        if mode {
-//            Please.textColor = .white
-//            letMe.textColor = .white
-//            know.textColor = .white
-//            your.textColor = .white
-//        } else {
-//            Please.textColor = .black
-//            letMe.textColor = .black
-//            know.textColor = .black
-//            your.textColor = .black
-//        }
         if mode {
             welcomeImageView.image = UIImage(named: "welcome_dark")
         } else {

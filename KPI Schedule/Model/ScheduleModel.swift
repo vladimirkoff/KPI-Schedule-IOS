@@ -28,14 +28,26 @@ struct Pair: Codable {
     var time: String
 }
 
+struct PairModel {
+    var name: String
+    var type: String
+    var time: String
+    var teacherName: String
+}
+
+struct CurrentInfoDB {
+    static var lesson = 0
+    static var day = 0
+}
+
 //MARK: - Models for current lesson
 
 struct CurrentData: Codable {
-    var data: CurrentObjs
+    var data: CurrentParams
 }
 
 
-struct CurrentObjs: Codable {
+struct CurrentParams: Codable {
     var currentWeek: Int
     var currentDay: Int
     var currentLesson: Int

@@ -53,7 +53,6 @@ class ScheduleViewController: UIViewController {
     
     func configureTableView() {
         tableView.dataSource = self
-  
         tableView.register(UINib(nibName: Identifiers.CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: Identifiers.SCHEDULE_CELL)
     }
     
@@ -64,7 +63,7 @@ class ScheduleViewController: UIViewController {
     }
     
     @IBAction func weeksSelectortriggered(_ sender: UISegmentedControl) {
-        week = sender.selectedSegmentIndex+1
+        week = sender.selectedSegmentIndex + 1
         updateUI(week: self.week, day: self.den)
     }
     
@@ -77,12 +76,13 @@ class ScheduleViewController: UIViewController {
 //MARK: - ВАperformRequestForCurrentInfo
 
 extension ScheduleViewController: CurrentDayDelegate {
+    
     func didFailWithCurrentInfo() {
         print("ERROR")
     }
     
     func setCurrentDayWeekLesson(day: Int, lesson: Int) {
-        self.daysSelector.selectedSegmentIndex = day-1
+        self.daysSelector.selectedSegmentIndex = day - 1
         self.daysSelector.sendActions(for: .valueChanged)
         CurrentInfoDB.day = day
         CurrentInfoDB.lesson = lesson
@@ -101,7 +101,7 @@ extension ScheduleViewController: UITableViewDataSource {
         
         tableView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
         if (CurrentLesson.lessonTime[CurrentInfoDB.lesson] == cellText.time
-            && daysSelector.selectedSegmentIndex == CurrentInfoDB.day-1)
+            && daysSelector.selectedSegmentIndex == CurrentInfoDB.day - 1)
         {cell.timeLabel?.text = "\(cellText.time)   🔴NOW"} else {cell.timeLabel?.text = cellText.time}
         
         cell.typeLabel?.text = cellText.type

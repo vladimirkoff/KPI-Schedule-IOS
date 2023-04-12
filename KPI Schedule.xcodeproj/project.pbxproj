@@ -20,7 +20,6 @@
 		85565F91297E9F4A009E7E7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85565F8F297E9F4A009E7E7E /* Main.storyboard */; };
 		85565F93297E9F4A009E7E7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85565F92297E9F4A009E7E7E /* Assets.xcassets */; };
 		85565F96297E9F4A009E7E7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85565F94297E9F4A009E7E7E /* LaunchScreen.storyboard */; };
-		8566D6F02983FB2E003ECB25 /* GroupAndScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8566D6EF2983FB2E003ECB25 /* GroupAndScheduleModel.swift */; };
 		8566D6F22984068C003ECB25 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8566D6F12984068C003ECB25 /* ScheduleManager.swift */; };
 		857EF41329E68B1A00E536CC /* ScheduleAndCurrentLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857EF41229E68B1A00E536CC /* ScheduleAndCurrentLesson.swift */; };
 		857EF41529E68B3B00E536CC /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857EF41429E68B3B00E536CC /* GroupModel.swift */; };
@@ -45,7 +44,6 @@
 		85565F92297E9F4A009E7E7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85565F95297E9F4A009E7E7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85565F97297E9F4A009E7E7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8566D6EF2983FB2E003ECB25 /* GroupAndScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAndScheduleModel.swift; sourceTree = "<group>"; };
 		8566D6F12984068C003ECB25 /* ScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleManager.swift; sourceTree = "<group>"; };
 		857EF41229E68B1A00E536CC /* ScheduleAndCurrentLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAndCurrentLesson.swift; sourceTree = "<group>"; };
 		857EF41429E68B3B00E536CC /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 		85864BAB29812ED4005FD3D9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8566D6EF2983FB2E003ECB25 /* GroupAndScheduleModel.swift */,
 				857EF41429E68B3B00E536CC /* GroupModel.swift */,
 				857EF41629E68B5D00E536CC /* ScheduleModel.swift */,
 			);
@@ -244,7 +241,6 @@
 				85AE974529840F5F00A46087 /* Constants.swift in Sources */,
 				85565F8C297E9F4A009E7E7E /* SceneDelegate.swift in Sources */,
 				853C57EA29892F9800885480 /* LoadingViewController.swift in Sources */,
-				8566D6F02983FB2E003ECB25 /* GroupAndScheduleModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
