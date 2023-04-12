@@ -23,6 +23,8 @@ git clone https://github.com/vladimirkoff/KPI-Schedule-IOS.git
 
 
 
+
+
 2. Open iWeather.xcworkspace in Xcode
 
 3. Select some iOS/iPadOS device and hit run button in Xcode
@@ -37,10 +39,10 @@ git clone https://github.com/vladimirkoff/KPI-Schedule-IOS.git
 | ------------- | ------------- | 
 |![Simulator Screen Shot - iPhone 14 Pro - 2023-04-12 at 13 16 54](https://user-images.githubusercontent.com/115025494/231428631-c72718e3-2064-4059-aa48-f9804541ca91.png)|![Simulator Screen Shot - iPhone 14 Pro - 2023-04-12 at 13 16 57](https://user-images.githubusercontent.com/115025494/231428638-15da6ffe-33b3-41db-8a95-1e2148d22031.png)| 
 
-###  Check weather
+###  Check schedule for
 
-| For specific city | For your location |
+| Week one | Week two |
 | ------------- | ------------- |
-|![Simulator Screen Shot - iPhone 14 Pro - 2023-04-11 at 18 58 26](https://user-images.githubusercontent.com/115025494/231221002-0c2e7447-1a7b-4302-8a94-f781cc8a04f9.png)| ![Simulator Screen Shot - iPhone 14 Pro - 2023-04-11 at 18 58 34](https://user-images.githubusercontent.com/115025494/231220868-05cd5147-b30e-4ac8-b0fe-c4b6dd25f599.png)| 
+|![Simulator Screen Shot - iPhone 14 Pro - 2023-04-12 at 13 08 15](https://user-images.githubusercontent.com/115025494/231429036-f7c09152-8945-4ca3-ad38-0fc72ab4b564.png)| ![Simulator Screen Shot - iPhone 14 Pro - 2023-04-12 at 13 08 20](https://user-images.githubusercontent.com/115025494/231429056-a6a392d3-b722-4455-bc6a-31c40573e597.png)| 
 
 
