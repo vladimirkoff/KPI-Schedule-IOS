@@ -46,8 +46,8 @@ class ScheduleViewController: UIViewController {
     
     func updateUI(week: Int, day: Int) {
         DispatchQueue.main.async {
-            let a = self.schedule?[week]![day]
-            for pair in a! {
+            let schedule = self.schedule?[week]![day]
+            for pair in schedule! {
                 self.scheduleArray.append(pair)
                 self.tableView.reloadData()
             }
@@ -58,7 +58,7 @@ class ScheduleViewController: UIViewController {
     //MARK: - Actions
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: Identifiers.GO_BACK_FROM_SCHEDULE, sender: self)
+        performSegue(withIdentifier: Identifiers.GO_BACK_FROM_SCHEDULE, sender: self)
     }
     
     @IBAction func weeksSelectortriggered(_ sender: UISegmentedControl) {
@@ -116,6 +116,6 @@ extension ScheduleViewController: UITableViewDataSource {
 extension ScheduleViewController: GroupManagerDelegate {
     func didFailWithGroup() {
         print("An error occured")
-        self.performSegue(withIdentifier: Identifiers.GO_TO_ERROR_SEGUE, sender: self)
+        performSegue(withIdentifier: Identifiers.GO_TO_ERROR_SEGUE, sender: self)
     }
 }

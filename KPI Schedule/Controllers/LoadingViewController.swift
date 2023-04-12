@@ -40,7 +40,7 @@ class LoadingViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Identifiers.GO_TO_SCHEDULE_SEGUE {
             let scheduleVC = segue.destination as! ScheduleViewController
-            scheduleVC.schedule = self.schedule
+            scheduleVC.schedule = schedule
         }
     }
     
@@ -58,11 +58,11 @@ class LoadingViewController: UIViewController {
 extension LoadingViewController: ScheduleManagerDelegate {
     func didUpdate(schedule: [Int : [[PairModel]]]) {
         self.schedule = schedule
-        self.performSegue(withIdentifier: Identifiers.GO_TO_SCHEDULE_SEGUE, sender: self)
+        performSegue(withIdentifier: Identifiers.GO_TO_SCHEDULE_SEGUE, sender: self)
     }
     
     func didFail() {
-        self.performSegue(withIdentifier: Identifiers.GO_TO_ERROR_SEGUE, sender: self)
+        performSegue(withIdentifier: Identifiers.GO_TO_ERROR_SEGUE, sender: self)
     }
 }
 
@@ -70,6 +70,6 @@ extension LoadingViewController: ScheduleManagerDelegate {
 
 extension LoadingViewController: GroupManagerDelegate {
     func didFailWithGroup() {
-        self.performSegue(withIdentifier: Identifiers.GO_TO_ERROR_SEGUE, sender: self)
+        performSegue(withIdentifier: Identifiers.GO_TO_ERROR_SEGUE, sender: self)
     }
 }

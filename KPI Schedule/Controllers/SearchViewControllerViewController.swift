@@ -19,11 +19,17 @@ class SearchViewController: UIViewController {
     
     private var group = ""
     
+   private let attributedPlaceholder = NSAttributedString(
+        string: "Type in your group",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(white: 1, alpha: 0.7)]
+    )
+    
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        seacrhTextField?.delegate = self
         configureUI()
     }
     
@@ -35,24 +41,26 @@ class SearchViewController: UIViewController {
             return
         }
         seacrhTextField.endEditing(true)
-        self.performSegue(withIdentifier: Identifiers.GO_TO_LOADING_SEGUE, sender: self)
+        performSegue(withIdentifier: Identifiers.GO_TO_LOADING_SEGUE, sender: self)
     }
     
     @IBAction func switchMode(_ sender: UISwitch) {
         Tracker.mode = sender.isOn
-        backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
-        changeAppearance(mode: Tracker.mode)
+        configureUI()
     }
     
     //MARK: - Alert
     private func alert() {
         let alert = UIAlertController(title: "Oops!", message: "It seems like you have not typed the group!", preferredStyle: .alert)
+        
         let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
         })
         alert.addAction(ok)
+        
         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
         })
         alert.addAction(cancel)
+        
         present(alert, animated: true)
     }
     
@@ -67,7 +75,7 @@ class SearchViewController: UIViewController {
     //MARK: - Helpers
     
     func configureUI() {
-        seacrhTextField?.delegate = self
+        seacrhTextField.attributedPlaceholder = attributedPlaceholder
         backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
         switcher.isOn = Tracker.mode
         changeTextColor(mode: Tracker.mode)
@@ -105,7 +113,7 @@ extension SearchViewController: UITextFieldDelegate {
             alert()
         } else {
             seacrhTextField.endEditing(true)
-            self.performSegue(withIdentifier: Identifiers.GO_TO_LOADING_SEGUE, sender: self)
+            performSegue(withIdentifier: Identifiers.GO_TO_LOADING_SEGUE, sender: self)
         }
         textField.endEditing(true) 
         return true
@@ -115,12 +123,11 @@ extension SearchViewController: UITextFieldDelegate {
         if textField.text != "" {
             return true
         } else {
-            textField.placeholder = "Type in you group"
             return false
         }
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.group = textField.text!
+        group = textField.text!
         textField.text = ""
     }
 }

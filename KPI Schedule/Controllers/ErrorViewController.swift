@@ -32,6 +32,6 @@ class ErrorViewController: UIViewController {
     //MARK: - Actions
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: Identifiers.GO_BACK_SEGUE, sender: self)
+        performSegue(withIdentifier: Identifiers.GO_BACK_SEGUE, sender: self)
     }
 }
