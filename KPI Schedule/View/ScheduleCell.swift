@@ -8,7 +8,8 @@
 import UIKit
 
 class ScheduleCell: UITableViewCell {
-
+    //MARK: - Properties
+    
     @IBOutlet var backGround: UIView!
     @IBOutlet var backgroundCol: UIView!
     @IBOutlet weak var teacherNameLabel: UILabel!
@@ -16,14 +17,25 @@ class ScheduleCell: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
+    //MARK: - Lifecycle
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        configureCell()
+    }
+    
+    //MARK: - Helpers
+    
+    func configureCell() {
         backgroundCol.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
         changeTextColor(mode: Tracker.mode)
     }
+    
     func changeTextColor(mode: Bool) {
         if mode {
             teacherNameLabel.textColor = .white
@@ -38,5 +50,5 @@ class ScheduleCell: UITableViewCell {
         }
     }
 }
-    
+
 

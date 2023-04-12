@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -11,110 +11,110 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="KPI_Schedule" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="SearchViewController" customModule="KPI_Schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uPU-mS-5G2">
-                                <rect key="frame" x="290" y="63" width="51" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="switchMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="aRw-Fd-EQM"/>
-                                </connections>
-                            </switch>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type in your group" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tDO-Z8-gvD">
-                                <rect key="frame" x="56" y="441" width="259" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemFillColor"/>
-                                <color key="tintColor" systemColor="systemPurpleColor"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
-                            </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="group-removebg-preview" translatesAutoresizingMaskIntoConstraints="NO" id="Pih-Pp-Ddx">
-                                <rect key="frame" x="-59" y="254" width="378" height="224"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="welcome_dark" translatesAutoresizingMaskIntoConstraints="NO" id="vox-pj-iVj">
+                                <rect key="frame" x="-235.66666666666666" y="287.66666666666669" width="864.33333333333337" height="277.00000000000006"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="864.33000000000004" id="K0p-XM-v8b"/>
+                                    <constraint firstAttribute="height" constant="277" id="fXP-FO-Ied"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="know" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVz-I5-2pv">
-                                <rect key="frame" x="236" y="271" width="169" height="103"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="41"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="your" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2a-eE-kyD">
-                                <rect key="frame" x="244" y="315" width="169" height="103"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="41"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="group" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z50-SS-081">
-                                <rect key="frame" x="236" y="352" width="169" height="103"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="41"/>
-                                <color key="textColor" red="0.93333333330000001" green="0.42352941179999998" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please," textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDC-87-Sld">
-                                <rect key="frame" x="146" y="191" width="169" height="103"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="41"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="let me" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffc-Bf-Zkp">
-                                <rect key="frame" x="196" y="229" width="530" height="103"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="41"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y5S-VX-5fw">
-                                <rect key="frame" x="325" y="64" width="68" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="secondarySystemGroupedBackgroundColor"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="sun.min.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FIe-ur-35h">
-                                <rect key="frame" x="227" y="64" width="79" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="secondarySystemBackgroundColor"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXk-la-mg6">
-                                <rect key="frame" x="292" y="410" width="76" height="96"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonConfiguration key="configuration" style="plain" image="paperplane.fill" catalog="system">
-                                    <color key="baseForegroundColor" red="0.93333333330000001" green="0.42352941179999998" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="seacrhButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EQ5-d1-Stx"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="8535E96FE45B84B817A796DBD05_4AAC618A_BDCA" translatesAutoresizingMaskIntoConstraints="NO" id="Fga-Ls-NNy">
-                                <rect key="frame" x="25" y="454" width="343" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rmO-4Q-CSg">
+                                <rect key="frame" x="63.666666666666657" y="532.33333333333337" width="275.66666666666674" height="34.333333333333371"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type in your group" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tDO-Z8-gvD">
+                                        <rect key="frame" x="0.0" y="0.0" width="225" height="34"/>
+                                        <color key="backgroundColor" systemColor="systemFillColor"/>
+                                        <color key="tintColor" systemColor="systemPurpleColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="225" id="Ojz-ke-J9P"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXk-la-mg6">
+                                        <rect key="frame" x="225.00000000000003" y="0.0" width="50.666666666666657" height="34.333333333333336"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="paperplane.fill" catalog="system">
+                                            <color key="baseForegroundColor" red="0.93333333330000001" green="0.42352941179999998" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="seacrhButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EQ5-d1-Stx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nYF-nO-ttD">
+                                <rect key="frame" x="197" y="63" width="180" height="50"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sun.min.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FIe-ur-35h">
+                                        <rect key="frame" x="0.0" y="0.99999999999999645" width="50" height="48.333333333333329"/>
+                                        <color key="tintColor" systemColor="secondarySystemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="RsK-ky-kp6"/>
+                                            <constraint firstAttribute="height" constant="50" id="jb7-2a-9h4"/>
+                                        </constraints>
+                                    </imageView>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uPU-mS-5G2">
+                                        <rect key="frame" x="58" y="9.6666666666666714" width="66" height="31"/>
+                                        <connections>
+                                            <action selector="switchMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="aRw-Fd-EQM"/>
+                                        </connections>
+                                    </switch>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y5S-VX-5fw">
+                                        <rect key="frame" x="130" y="0.0" width="50" height="50"/>
+                                        <color key="tintColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="mIg-tv-zEp"/>
+                                            <constraint firstAttribute="width" constant="50" id="rjV-pz-9LN"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="ZrN-dp-cES"/>
+                                </constraints>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="8535E96FE45B84B817A796DBD05_4AAC618A_BDCA" translatesAutoresizingMaskIntoConstraints="NO" id="Fga-Ls-NNy">
+                                <rect key="frame" x="-685.66666666666663" y="591.66666666666663" width="1764.333333333333" height="161"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="161" id="HTE-DA-EHp"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY" colorLabel="IBBuiltInLabel-Green"/>
                         <color key="backgroundColor" name="Color"/>
+                        <constraints>
+                            <constraint firstItem="vox-pj-iVj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4lh-DZ-tnG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nYF-nO-ttD" secondAttribute="trailing" constant="16" id="8uz-KI-xdP"/>
+                            <constraint firstItem="vox-pj-iVj" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="GA7-FZ-BQN"/>
+                            <constraint firstItem="rmO-4Q-CSg" firstAttribute="bottom" secondItem="vox-pj-iVj" secondAttribute="bottom" constant="2" id="Osb-xf-Uza"/>
+                            <constraint firstItem="Fga-Ls-NNy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W8n-lX-icD"/>
+                            <constraint firstItem="Fga-Ls-NNy" firstAttribute="top" secondItem="rmO-4Q-CSg" secondAttribute="bottom" constant="25" id="YoN-5h-Owp"/>
+                            <constraint firstItem="rmO-4Q-CSg" firstAttribute="centerX" secondItem="vox-pj-iVj" secondAttribute="centerX" constant="5" id="ujZ-fx-mcm"/>
+                            <constraint firstItem="nYF-nO-ttD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="4" id="xZi-vP-yVw"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="o6U-2U-DW3"/>
                     <connections>
-                        <outlet property="Please" destination="sDC-87-Sld" id="7oI-bD-khz"/>
                         <outlet property="backgroundView" destination="8bC-Xf-vdC" id="8dn-w2-oXE"/>
-                        <outlet property="know" destination="tVz-I5-2pv" id="h2I-O9-1S2"/>
-                        <outlet property="letMe" destination="Ffc-Bf-Zkp" id="3Ov-qN-UE3"/>
                         <outlet property="moonImage" destination="Y5S-VX-5fw" id="94i-3w-frW"/>
                         <outlet property="seacrhTextField" destination="tDO-Z8-gvD" id="lu1-Ru-QNp"/>
                         <outlet property="sunImage" destination="FIe-ur-35h" id="bLj-EV-z3i"/>
                         <outlet property="switcher" destination="uPU-mS-5G2" id="zpu-tc-l2F"/>
-                        <outlet property="your" destination="J2a-eE-kyD" id="QAF-iA-MKE"/>
+                        <outlet property="welcomeImageView" destination="vox-pj-iVj" id="kum-St-FPT"/>
                         <segue destination="oUQ-VO-RGz" kind="presentation" identifier="goToLoading" modalPresentationStyle="fullScreen" id="QDh-EG-4Tm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3369" y="1250"/>
+            <point key="canvasLocation" x="3368.7022900763359" y="1250"/>
         </scene>
         <!--Schedule View Controller-->
         <scene sceneID="Tau-Mq-Uft">
@@ -340,16 +340,16 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="FuJ-ef-kdw"/>
+        <segue reference="GMs-Km-3LV"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="2" width="256" height="256"/>
         <image name="4" width="256" height="256"/>
         <image name="8535E96FE45B84B817A796DBD05_4AAC618A_BDCA" width="1764" height="786"/>
         <image name="chevron.left" catalog="system" width="97" height="128"/>
-        <image name="group-removebg-preview" width="85.333335876464844" height="85.333335876464844"/>
         <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="sun.min.fill" catalog="system" width="128" height="123"/>
+        <image name="welcome_dark" width="864" height="664"/>
         <namedColor name="Color">
             <color red="0.77600002288818359" green="0.67500001192092896" blue="0.56099998950958252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

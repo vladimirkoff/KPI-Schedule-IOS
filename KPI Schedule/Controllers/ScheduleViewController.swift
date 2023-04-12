@@ -8,9 +8,10 @@
 import UIKit
 
 class ScheduleViewController: UIViewController {
-   
+    //MARK: - Properties
+    
     var dayManager = DayManager()
-    let viewController = ViewController()
+    let viewController = SearchViewController()
     var groupManager = GroupManager()
     
     var scheduleArray: [PairModel] = []
@@ -19,7 +20,7 @@ class ScheduleViewController: UIViewController {
     var group = "GROUP"
     var week = 1
     var den = 0
-
+    
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var daysSelector: UISegmentedControl!
     @IBOutlet weak var weeksSeelctor: UISegmentedControl!
@@ -33,20 +34,35 @@ class ScheduleViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-    self.scheduleArray.removeAll()
+        self.scheduleArray.removeAll()
     }
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dayManager.delegate = self
-        tableView.dataSource = self
-        backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
-        tableView.register(UINib(nibName: Strings.cellName, bundle: nil), forCellReuseIdentifier: Urls.cellIdentifier)
+        configureUI()
+        configureTableView()
         dayManager.performRequestForCurrentInfo()
     }
     
+    //MARK: - Helpers
+    
+    func configureUI() {
+        backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
+    }
+    
+    func configureTableView() {
+        tableView.dataSource = self
+  
+        tableView.register(UINib(nibName: Identifiers.CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: Identifiers.SCHEDULE_CELL)
+    }
+    
+    //MARK: - Actions
+    
     @IBAction func backButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: Strings.segue4Identifier, sender: self)
+        self.performSegue(withIdentifier: Identifiers.GO_BACK_FROM_SCHEDULE, sender: self)
     }
     
     @IBAction func weeksSelectortriggered(_ sender: UISegmentedControl) {
@@ -68,27 +84,27 @@ extension ScheduleViewController: CurrentDayDelegate {
     }
     
     func setCurrentDayWeekLesson(day: Int, lesson: Int) {
-            self.daysSelector.selectedSegmentIndex = day-1
-            self.daysSelector.sendActions(for: .valueChanged)
-            CurrentInfoDB.day = day
-            CurrentInfoDB.lesson = lesson
+        self.daysSelector.selectedSegmentIndex = day-1
+        self.daysSelector.sendActions(for: .valueChanged)
+        CurrentInfoDB.day = day
+        CurrentInfoDB.lesson = lesson
     }
 }
 
-//MARK: - UITableView
+//MARK: - UITableViewDelegate & DataSource
 
 extension ScheduleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return scheduleArray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Urls.cellIdentifier, for: indexPath) as! ScheduleCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.SCHEDULE_CELL, for: indexPath) as! ScheduleCell
         let cellText = scheduleArray[indexPath.row]
         
         tableView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
         if (CurrentLesson.lessonTime[CurrentInfoDB.lesson] == cellText.time
             && daysSelector.selectedSegmentIndex == CurrentInfoDB.day-1)
-            {cell.timeLabel?.text = "\(cellText.time)   🔴NOW"} else {cell.timeLabel?.text = cellText.time}
+        {cell.timeLabel?.text = "\(cellText.time)   🔴NOW"} else {cell.timeLabel?.text = cellText.time}
         
         cell.typeLabel?.text = cellText.type
         cell.nameLabel?.text = cellText.name
@@ -102,6 +118,6 @@ extension ScheduleViewController: UITableViewDataSource {
 extension ScheduleViewController: GroupManagerDelegate {
     func didFailWithGroup() {
         print("An error occured")
-        self.performSegue(withIdentifier: Strings.segue2Identifier, sender: self)
+        self.performSegue(withIdentifier: Identifiers.GO_TO_ERROR_SEGUE, sender: self)
     }
 }

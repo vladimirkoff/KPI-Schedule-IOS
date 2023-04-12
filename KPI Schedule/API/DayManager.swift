@@ -16,17 +16,17 @@ struct DayManager {
     
     var delegate: CurrentDayDelegate?
     func performRequestForCurrentInfo() {
-        if let url = URL(string: Urls.urlForCurrentInfo) {
+        if let url = URL(string: Urls.URL_FOR_CURRENT_INFO) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
                 if let e = error {
                     print(e)
                 }
                 if let safeData = data {
-                        if let current = parseJSON(data: safeData){
-                            DispatchQueue.main.async {
-                                self.delegate?.setCurrentDayWeekLesson(day: current[0], lesson: current[2])
-                            }
+                    if let current = parseJSON(data: safeData){
+                        DispatchQueue.main.async {
+                            self.delegate?.setCurrentDayWeekLesson(day: current[0], lesson: current[2])
+                        }
                     }
                 }
             }

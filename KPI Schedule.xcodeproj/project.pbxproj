@@ -16,15 +16,17 @@
 		855106712985167100EABF4F /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8551066F2985167100EABF4F /* ScheduleCell.xib */; };
 		85565F8A297E9F4A009E7E7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85565F89297E9F4A009E7E7E /* AppDelegate.swift */; };
 		85565F8C297E9F4A009E7E7E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85565F8B297E9F4A009E7E7E /* SceneDelegate.swift */; };
-		85565F8E297E9F4A009E7E7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85565F8D297E9F4A009E7E7E /* ViewController.swift */; };
+		85565F8E297E9F4A009E7E7E /* SearchViewControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85565F8D297E9F4A009E7E7E /* SearchViewControllerViewController.swift */; };
 		85565F91297E9F4A009E7E7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85565F8F297E9F4A009E7E7E /* Main.storyboard */; };
 		85565F93297E9F4A009E7E7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85565F92297E9F4A009E7E7E /* Assets.xcassets */; };
 		85565F96297E9F4A009E7E7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85565F94297E9F4A009E7E7E /* LaunchScreen.storyboard */; };
-		8566D6ED2983F9FA003ECB25 /* GroupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8566D6EC2983F9FA003ECB25 /* GroupData.swift */; };
 		8566D6F02983FB2E003ECB25 /* GroupAndScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8566D6EF2983FB2E003ECB25 /* GroupAndScheduleModel.swift */; };
 		8566D6F22984068C003ECB25 /* ScheduleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8566D6F12984068C003ECB25 /* ScheduleManager.swift */; };
+		857EF41329E68B1A00E536CC /* ScheduleAndCurrentLesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857EF41229E68B1A00E536CC /* ScheduleAndCurrentLesson.swift */; };
+		857EF41529E68B3B00E536CC /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857EF41429E68B3B00E536CC /* GroupModel.swift */; };
+		857EF41729E68B5D00E536CC /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857EF41629E68B5D00E536CC /* ScheduleModel.swift */; };
 		85864BAE298131E5005FD3D9 /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85864BAD298131E5005FD3D9 /* GroupManager.swift */; };
-		85AE974529840F5F00A46087 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AE974429840F5F00A46087 /* Strings.swift */; };
+		85AE974529840F5F00A46087 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AE974429840F5F00A46087 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,16 +40,18 @@
 		85565F86297E9F4A009E7E7E /* KPI Schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KPI Schedule.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85565F89297E9F4A009E7E7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		85565F8B297E9F4A009E7E7E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		85565F8D297E9F4A009E7E7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		85565F8D297E9F4A009E7E7E /* SearchViewControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerViewController.swift; sourceTree = "<group>"; };
 		85565F90297E9F4A009E7E7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		85565F92297E9F4A009E7E7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85565F95297E9F4A009E7E7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		85565F97297E9F4A009E7E7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8566D6EC2983F9FA003ECB25 /* GroupData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupData.swift; sourceTree = "<group>"; };
 		8566D6EF2983FB2E003ECB25 /* GroupAndScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAndScheduleModel.swift; sourceTree = "<group>"; };
 		8566D6F12984068C003ECB25 /* ScheduleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleManager.swift; sourceTree = "<group>"; };
+		857EF41229E68B1A00E536CC /* ScheduleAndCurrentLesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAndCurrentLesson.swift; sourceTree = "<group>"; };
+		857EF41429E68B3B00E536CC /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
+		857EF41629E68B5D00E536CC /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
 		85864BAD298131E5005FD3D9 /* GroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
-		85AE974429840F5F00A46087 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		85AE974429840F5F00A46087 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +65,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		851CD59B29E470C70018C0D6 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8566D6F12984068C003ECB25 /* ScheduleManager.swift */,
+				85307AF32989530E00377D65 /* DayManager.swift */,
+				85864BAD298131E5005FD3D9 /* GroupManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		8551066D2985163D00EABF4F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8551066E2985167100EABF4F /* ScheduleCell.swift */,
 				85565F8F297E9F4A009E7E7E /* Main.storyboard */,
 				8551066F2985167100EABF4F /* ScheduleCell.xib */,
 			);
@@ -89,28 +104,44 @@
 		85565F88297E9F4A009E7E7E /* KPI Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				857EF41129E6883A00E536CC /* Utilities */,
+				851CD59B29E470C70018C0D6 /* API */,
 				8551066D2985163D00EABF4F /* View */,
-				85565F89297E9F4A009E7E7E /* AppDelegate.swift */,
-				85565F8B297E9F4A009E7E7E /* SceneDelegate.swift */,
 				85864BAB29812ED4005FD3D9 /* Model */,
 				85565F92297E9F4A009E7E7E /* Assets.xcassets */,
 				85957C8F298161E200C6FC7C /* Controllers */,
 				85565F94297E9F4A009E7E7E /* LaunchScreen.storyboard */,
+				857EF41029E686C000E536CC /* SupportingFiles */,
 				85565F97297E9F4A009E7E7E /* Info.plist */,
 			);
 			path = "KPI Schedule";
 			sourceTree = "<group>";
 		};
+		857EF41029E686C000E536CC /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				85565F8B297E9F4A009E7E7E /* SceneDelegate.swift */,
+				85565F89297E9F4A009E7E7E /* AppDelegate.swift */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		857EF41129E6883A00E536CC /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				85307AF12989467800377D65 /* AppearanceTracker.swift */,
+				85AE974429840F5F00A46087 /* Constants.swift */,
+				857EF41229E68B1A00E536CC /* ScheduleAndCurrentLesson.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		85864BAB29812ED4005FD3D9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				85864BAD298131E5005FD3D9 /* GroupManager.swift */,
-				8566D6EC2983F9FA003ECB25 /* GroupData.swift */,
 				8566D6EF2983FB2E003ECB25 /* GroupAndScheduleModel.swift */,
-				8566D6F12984068C003ECB25 /* ScheduleManager.swift */,
-				85AE974429840F5F00A46087 /* Strings.swift */,
-				85307AF12989467800377D65 /* AppearanceTracker.swift */,
-				85307AF32989530E00377D65 /* DayManager.swift */,
+				857EF41429E68B3B00E536CC /* GroupModel.swift */,
+				857EF41629E68B5D00E536CC /* ScheduleModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -118,11 +149,10 @@
 		85957C8F298161E200C6FC7C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				85565F8D297E9F4A009E7E7E /* ViewController.swift */,
+				85565F8D297E9F4A009E7E7E /* SearchViewControllerViewController.swift */,
 				855106692984F17900EABF4F /* ScheduleViewController.swift */,
 				851F9CB529891C5A002643A8 /* ErrorViewController.swift */,
 				853C57E929892F9800885480 /* LoadingViewController.swift */,
-				8551066E2985167100EABF4F /* ScheduleCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -203,13 +233,15 @@
 				85864BAE298131E5005FD3D9 /* GroupManager.swift in Sources */,
 				85307AF22989467800377D65 /* AppearanceTracker.swift in Sources */,
 				851F9CB629891C5A002643A8 /* ErrorViewController.swift in Sources */,
-				8566D6ED2983F9FA003ECB25 /* GroupData.swift in Sources */,
 				8566D6F22984068C003ECB25 /* ScheduleManager.swift in Sources */,
+				857EF41329E68B1A00E536CC /* ScheduleAndCurrentLesson.swift in Sources */,
 				8551066A2984F17900EABF4F /* ScheduleViewController.swift in Sources */,
 				855106702985167100EABF4F /* ScheduleCell.swift in Sources */,
-				85565F8E297E9F4A009E7E7E /* ViewController.swift in Sources */,
+				857EF41529E68B3B00E536CC /* GroupModel.swift in Sources */,
+				85565F8E297E9F4A009E7E7E /* SearchViewControllerViewController.swift in Sources */,
 				85565F8A297E9F4A009E7E7E /* AppDelegate.swift in Sources */,
-				85AE974529840F5F00A46087 /* Strings.swift in Sources */,
+				857EF41729E68B5D00E536CC /* ScheduleModel.swift in Sources */,
+				85AE974529840F5F00A46087 /* Constants.swift in Sources */,
 				85565F8C297E9F4A009E7E7E /* SceneDelegate.swift in Sources */,
 				853C57EA29892F9800885480 /* LoadingViewController.swift in Sources */,
 				8566D6F02983FB2E003ECB25 /* GroupAndScheduleModel.swift in Sources */,

@@ -7,38 +7,37 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SearchViewController: UIViewController {
+    //MARK: - Properties
     
+    @IBOutlet weak var welcomeImageView: UIImageView!
     private var group = ""
     private var groupManager = GroupManager()
     private let scheduleManager = ScheduleManager()
     let window = UIWindow()
     
-    
-    @IBOutlet weak var your: UILabel!
-    @IBOutlet weak var know: UILabel!
-    @IBOutlet weak var letMe: UILabel!
-    @IBOutlet weak var Please: UILabel!
+ 
     @IBOutlet weak var moonImage: UIImageView!
     @IBOutlet weak var sunImage: UIImageView!
     @IBOutlet weak var switcher: UISwitch!
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var seacrhTextField: UITextField!
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        seacrhTextField?.delegate = self
-        backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
-        switcher.isOn = Tracker.mode
-        changeTextColor(mode: Tracker.mode)
+        configureUI()
     }
+    
+    //MARK: - Actions
     
     @IBAction func seacrhButton(_ sender: UIButton) {
         if seacrhTextField.text == "" {
             alert()
         } else {
             seacrhTextField.endEditing(true)
-            self.performSegue(withIdentifier: Strings.segue1Identifier, sender: self)
+            self.performSegue(withIdentifier: Identifiers.GO_TO_LOADING_SEGUE, sender: self)
         }
     }
     
@@ -56,49 +55,69 @@ class ViewController: UIViewController {
             changeTextColor(mode: Tracker.mode)
         }
     }
+    
+    //MARK: - Alert
     private func alert() {
         let alert = UIAlertController(title: "Oops!", message: "It seems like you have not typed the group!", preferredStyle: .alert)
-             let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
-             })
-             alert.addAction(ok)
-             let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
-             })
-             alert.addAction(cancel)
-             DispatchQueue.main.async(execute: {
-                self.present(alert, animated: true)
+        let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
+        })
+        alert.addAction(ok)
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: { action in
+        })
+        alert.addAction(cancel)
+        DispatchQueue.main.async(execute: {
+            self.present(alert, animated: true)
         })
     }
+    
+    //MARK: - Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToLoading" {
             let loadingVC = segue.destination as! LoadingViewController
             loadingVC.group = group
         }
     }
+    
+    //MARK: - Helpers
+    
+    func configureUI() {
+        seacrhTextField?.delegate = self
+        backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
+        switcher.isOn = Tracker.mode
+        changeTextColor(mode: Tracker.mode)
+    }
+    
+    
     func changeTextColor(mode: Bool) {
+//        if mode {
+//            Please.textColor = .white
+//            letMe.textColor = .white
+//            know.textColor = .white
+//            your.textColor = .white
+//        } else {
+//            Please.textColor = .black
+//            letMe.textColor = .black
+//            know.textColor = .black
+//            your.textColor = .black
+//        }
         if mode {
-            Please.textColor = .white
-            letMe.textColor = .white
-            know.textColor = .white
-            your.textColor = .white
+            welcomeImageView.image = UIImage(named: "welcome_dark")
         } else {
-            Please.textColor = .black
-            letMe.textColor = .black
-            know.textColor = .black
-            your.textColor = .black
+            welcomeImageView.image = UIImage(named: "welcome_light")
         }
     }
 }
 
-//MARK: - UITextField
+//MARK: - UITextFieldDelegate
 
-extension ViewController: UITextFieldDelegate {
+extension SearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-                             // the user pressed the return key!
+        // the user pressed the return key
         if seacrhTextField.text == "" {
             alert()
         } else {
             seacrhTextField.endEditing(true)
-            self.performSegue(withIdentifier: Strings.segue1Identifier, sender: self)
+            self.performSegue(withIdentifier: Identifiers.GO_TO_LOADING_SEGUE, sender: self)
         }
         textField.endEditing(true) 
         return true

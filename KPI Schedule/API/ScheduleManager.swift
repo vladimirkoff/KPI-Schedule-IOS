@@ -13,13 +13,13 @@ protocol ScheduleManagerDelegate {
 }
 
 struct ScheduleManager {
-
-     func performRequestForSchedule(id: String, delegate: ScheduleManagerDelegate?) {
+    
+    func performRequestForSchedule(id: String, delegate: ScheduleManagerDelegate?) {
         let del = delegate
         DispatchQueue.global().async {
-            Urls.urlForSchedule += id
+            Urls.URL_FOR_SCHEDULE += id
             
-            if let url = URL(string: Urls.urlForSchedule) {
+            if let url = URL(string: Urls.URL_FOR_SCHEDULE) {
                 let session = URLSession(configuration: .default)
                 let task = session.dataTask(with: url) { data, response, error in
                     if let e = error {
@@ -68,7 +68,7 @@ struct ScheduleManager {
                     ScheduleForWeeks.secondWeek[den].append(PairModel(name: name, type: type, time: time, teacherName: teacherName))
                 }
                 den += 1
-        }
+            }
             schedule[2] = ScheduleForWeeks.secondWeek
             return schedule
         } catch {
