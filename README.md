@@ -14,7 +14,7 @@
 1. Clone this repository
 
 ```bash
-git clone https://github.com/vladimirkoff/iWeather-IOS.git
+git clone https://github.com/vladimirkoff/KPI-Schedule-IOS.git
 ```
 
 
