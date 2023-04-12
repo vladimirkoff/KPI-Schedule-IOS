@@ -42,36 +42,17 @@ struct ScheduleManager {
     }
     
     static  func parseJSON(data: Data) -> [Int : [[PairModel]]]? {
-        var den = 0
         do {
             let decodedData = try JSONDecoder().decode(ScheduleData.self, from: data)
             var schedule = [1: [[PairModel]](), 2: [[PairModel]]()]
-            for day in decodedData.data.scheduleFirstWeek {
-                for para in day.pairs {
-                    let name = para.name
-                    let teacherName = para.teacherName
-                    let time = para.time
-                    let type = para.type
-                    ScheduleForWeeks.firstWeek[den].append(PairModel(name: name, type: type, time: time, teacherName: teacherName))
-                }
-                den += 1
-            }
-            schedule[1] = ScheduleForWeeks.firstWeek
             
-            den = 0
+            let fetchedSchedule = fetchSchedule(firstWeek: decodedData.data.scheduleFirstWeek, secondWeek: decodedData.data.scheduleSecondWeek)
             
-            for day in decodedData.data.scheduleSecondWeek {
-                for para in day.pairs {
-                    let name = para.name
-                    let teacherName = para.teacherName
-                    let time = para.time
-                    let type = para.type
-                    ScheduleForWeeks.secondWeek[den].append(PairModel(name: name, type: type, time: time, teacherName: teacherName))
-                }
-                den += 1
-            }
-            schedule[2] = ScheduleForWeeks.secondWeek
+            schedule[1] = fetchedSchedule[0]
+            schedule[2] = fetchedSchedule[1]
+            
             return schedule
+            
         } catch {
             DispatchQueue.main.async {
                 delegate?.didFail()
@@ -81,5 +62,31 @@ struct ScheduleManager {
             delegate?.didFail()
         }
         return nil
+    }
+    
+    //MARK: - Fetch schedule for 2 weeks
+    
+    static func fetchSchedule(firstWeek: [Day], secondWeek: [Day] ) -> [[[PairModel]]] {
+        var schedule = [[[PairModel]]]()
+        var days = [Day]()
+        var day = 0
+        var scheduleForWeek = [[PairModel]]()
+        for week in 1...2 {
+            day = 0
+            days = week == 1 ? firstWeek : secondWeek
+            scheduleForWeek = week == 1 ? ScheduleForWeeks.firstWeek : ScheduleForWeeks.secondWeek
+            for weekDay in days {
+                for para in weekDay.pairs {
+                    let name = para.name
+                    let teacherName = para.teacherName
+                    let time = para.time
+                    let type = para.type
+                    scheduleForWeek[day].append(PairModel(name: name, type: type, time: time, teacherName: teacherName))
+                }
+                day += 1
+            }
+            schedule.append(scheduleForWeek)
+        }
+        return schedule
     }
 }
