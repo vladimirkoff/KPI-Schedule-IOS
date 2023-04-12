@@ -71,6 +71,7 @@ struct ScheduleManager {
         var days = [Day]()
         var day = 0
         var scheduleForWeek = [[PairModel]]()
+        
         for week in 1...2 {
             day = 0
             days = week == 1 ? firstWeek : secondWeek

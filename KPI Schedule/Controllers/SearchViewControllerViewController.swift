@@ -19,7 +19,7 @@ class SearchViewController: UIViewController {
     
     private var group = ""
     
-   private let attributedPlaceholder = NSAttributedString(
+    private let attributedPlaceholder = NSAttributedString(
         string: "Type in your group",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.init(white: 1, alpha: 0.7)]
     )
@@ -78,7 +78,7 @@ class SearchViewController: UIViewController {
         seacrhTextField.attributedPlaceholder = attributedPlaceholder
         backgroundView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)
         switcher.isOn = Tracker.mode
-        changeTextColor(mode: Tracker.mode)
+        changeWelcomeImage(mode: Tracker.mode)
     }
     
     func changeAppearance(mode: Bool) {
@@ -86,16 +86,15 @@ class SearchViewController: UIViewController {
             moonImage.image = UIImage(systemName: "moon.fill")
             moonImage.tintColor = .white
             sunImage.image = nil
-            changeTextColor(mode: Tracker.mode)
+            changeWelcomeImage(mode: Tracker.mode)
         } else {
             sunImage.image = UIImage(systemName: "sun.max.fill")
             moonImage.image = nil
-            changeTextColor(mode: Tracker.mode)
+            changeWelcomeImage(mode: Tracker.mode)
         }
     }
     
-    
-    func changeTextColor(mode: Bool) {
+    func changeWelcomeImage(mode: Bool) {
         if mode {
             welcomeImageView.image = UIImage(named: "welcome_dark")
         } else {
@@ -115,7 +114,7 @@ extension SearchViewController: UITextFieldDelegate {
             seacrhTextField.endEditing(true)
             performSegue(withIdentifier: Identifiers.GO_TO_LOADING_SEGUE, sender: self)
         }
-        textField.endEditing(true) 
+        textField.endEditing(true)
         return true
     }
     

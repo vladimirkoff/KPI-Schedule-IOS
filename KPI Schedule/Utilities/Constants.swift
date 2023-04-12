@@ -11,9 +11,6 @@ struct Urls {
     static let URL_FOR_ID = "https://schedule.kpi.ua/api/schedule/groups"
     static var URL_FOR_SCHEDULE = "https://schedule.kpi.ua/api/schedule/lessons?groupId="
     static var URL_FOR_CURRENT_INFO = "https://schedule.kpi.ua/api/time/current"
-    static func updateURL() {
-        URL_FOR_SCHEDULE = "https://schedule.kpi.ua/api/schedule/lessons?groupId="
-    }
 }
 
 struct Identifiers {
