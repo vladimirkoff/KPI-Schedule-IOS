@@ -19,7 +19,8 @@ struct GroupManager {
                         print("Error getting group - \(error.localizedDescription)")
                         delegate?.didFail()
                         return
-                    }                }
+                    }
+                }
                 if let safeData = data {
                     if let group = self.parseJSON(data: safeData, group: group) {
                         DispatchQueue.main.async {

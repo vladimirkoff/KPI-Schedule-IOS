@@ -10,30 +10,18 @@ import UIKit
 class ScheduleViewController: UIViewController {
     //MARK: - Properties
     
-    let viewController = SearchViewController()
-    
-    var scheduleArray: [PairModel] = []
-    var schedule: [Int : [[PairModel]]]?
-    
-    var group = "GROUP"
-    var week = 1
-    var den = 0
-    
     @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var daysSelector: UISegmentedControl!
     @IBOutlet weak var weeksSeelctor: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
     
-    func updateUI(week: Int, day: Int) {
-        DispatchQueue.main.async {
-            let a = self.schedule?[week]![day]
-            for pair in a! {
-                self.scheduleArray.append(pair)
-                self.tableView.reloadData()
-            }
-        }
-        self.scheduleArray.removeAll()
-    }
+    private var scheduleArray: [PairModel] = []
+    var schedule: [Int : [[PairModel]]]?
+    
+    private var group = ""
+    private var week = 1
+    private var den = 0
+    
     
     //MARK: - Lifecycle
     
@@ -56,6 +44,17 @@ class ScheduleViewController: UIViewController {
         tableView.register(UINib(nibName: Identifiers.CELL_NIB_NAME, bundle: nil), forCellReuseIdentifier: Identifiers.SCHEDULE_CELL)
     }
     
+    func updateUI(week: Int, day: Int) {
+        DispatchQueue.main.async {
+            let a = self.schedule?[week]![day]
+            for pair in a! {
+                self.scheduleArray.append(pair)
+                self.tableView.reloadData()
+            }
+        }
+        scheduleArray.removeAll()
+    }
+    
     //MARK: - Actions
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -64,12 +63,12 @@ class ScheduleViewController: UIViewController {
     
     @IBAction func weeksSelectortriggered(_ sender: UISegmentedControl) {
         week = sender.selectedSegmentIndex + 1
-        updateUI(week: self.week, day: self.den)
+        updateUI(week: week, day: den)
     }
     
     @IBAction func daysSelectorTriggered(_ sender: UISegmentedControl) {
         den = sender.selectedSegmentIndex
-        updateUI(week: self.week, day: self.den)
+        updateUI(week: week, day: den)
     }
 }
 
@@ -77,13 +76,13 @@ class ScheduleViewController: UIViewController {
 
 extension ScheduleViewController: CurrentDayDelegate {
     
-    func didFailWithCurrentInfo() {
-        print("ERROR")
+    func didFailWithCurrentInfo(error: Error) {
+        print("ERROR getting current parameters - \(error.localizedDescription)")
     }
     
     func setCurrentDayWeekLesson(day: Int, lesson: Int) {
-        self.daysSelector.selectedSegmentIndex = day - 1
-        self.daysSelector.sendActions(for: .valueChanged)
+        daysSelector.selectedSegmentIndex = day - 1
+        daysSelector.sendActions(for: .valueChanged)
         CurrentInfoDB.day = day
         CurrentInfoDB.lesson = lesson
     }
@@ -97,6 +96,7 @@ extension ScheduleViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Identifiers.SCHEDULE_CELL, for: indexPath) as! ScheduleCell
+        
         let cellText = scheduleArray[indexPath.row]
         
         tableView.backgroundColor = Tracker.mode ? #colorLiteral(red: 0.2078431373, green: 0.3137254902, blue: 0.4392156863, alpha: 1) : #colorLiteral(red: 0.7764705882, green: 0.6745098039, blue: 0.5607843137, alpha: 1)

@@ -9,14 +9,14 @@ import Foundation
 
 protocol CurrentDayDelegate {
     func setCurrentDayWeekLesson(day: Int, lesson: Int)
-    func didFailWithCurrentInfo()
+    func didFailWithCurrentInfo(error: Error)
 }
 
 struct DayManager {
     
     static var delegate: CurrentDayDelegate?
     
-    static  func performRequestForCurrentInfo() {
+    static func performRequestForCurrentInfo() {
         if let url = URL(string: Urls.URL_FOR_CURRENT_INFO) {
             
             URLSession.shared.dataTask(with: url) { data, response, error in
@@ -27,7 +27,7 @@ struct DayManager {
                 if let safeData = data {
                     if let current = parseJSON(data: safeData){
                         DispatchQueue.main.async {
-                            self.delegate?.setCurrentDayWeekLesson(day: current[0], lesson: current[2])
+                            self.delegate?.setCurrentDayWeekLesson(day: current[0], lesson: current[1])
                         }
                     }
                 }
@@ -35,12 +35,13 @@ struct DayManager {
             .resume()
         }
     }
+    
     static  func parseJSON(data: Data) -> [Int]? {
         do {
             let decodedData =  try JSONDecoder().decode(CurrentData.self, from: data)
-            return [decodedData.data.currentDay, decodedData.data.currentWeek, decodedData.data.currentLesson]
+            return [decodedData.data.currentDay, decodedData.data.currentLesson]
         } catch {
-            delegate?.didFailWithCurrentInfo()
+            delegate?.didFailWithCurrentInfo(error: error)
         }
         return nil
     }

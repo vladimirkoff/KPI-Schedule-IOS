@@ -17,33 +17,31 @@ struct ScheduleManager {
     static var delegate: ScheduleManagerDelegate?
     
     static func performRequestForSchedule(id: String) {
-        DispatchQueue.global().async {
-            Urls.URL_FOR_SCHEDULE += id
-            
-            if let url = URL(string: Urls.URL_FOR_SCHEDULE) {
-                
-                URLSession.shared.dataTask(with: url) { data, response, error in
-                    if let error = error {
-                        print("Error getting schedule - \(error.localizedDescription)")
+        
+        let url = URL(string: Urls.URL_FOR_SCHEDULE + id)
+        
+        if let url = url {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    print("Error getting schedule - \(error.localizedDescription)")
+                    DispatchQueue.main.async {
                         delegate?.didFail()
-                        return
                     }
-                    if let safeData = data {
-                        if let schedule = self.parse2JSON(data: safeData) {
-                            DispatchQueue.main.async {
-                                delegate?.didUpdate(schedule: schedule)
-                            }
+                    return
+                }
+                if let safeData = data {
+                    if let schedule = self.parseJSON(data: safeData) {
+                        DispatchQueue.main.async {
+                            delegate?.didUpdate(schedule: schedule)
                         }
                     }
                 }
-                .resume()
-                Urls.updateURL()
             }
+            .resume()
         }
-        
     }
     
-    static  func parse2JSON(data: Data) -> [Int : [[PairModel]]]? {
+    static  func parseJSON(data: Data) -> [Int : [[PairModel]]]? {
         var den = 0
         do {
             let decodedData = try JSONDecoder().decode(ScheduleData.self, from: data)
@@ -59,7 +57,9 @@ struct ScheduleManager {
                 den += 1
             }
             schedule[1] = ScheduleForWeeks.firstWeek
+            
             den = 0
+            
             for day in decodedData.data.scheduleSecondWeek {
                 for para in day.pairs {
                     let name = para.name
@@ -73,6 +73,11 @@ struct ScheduleManager {
             schedule[2] = ScheduleForWeeks.secondWeek
             return schedule
         } catch {
+            DispatchQueue.main.async {
+                delegate?.didFail()
+            }
+        }
+        DispatchQueue.main.async {
             delegate?.didFail()
         }
         return nil
